@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
 """
-observatorium CLI (v1.0)
-========================
-Lokalt CLI-grensesnitt for Reismannpoint Observatorium & 43 Metamorfose-motorer.
+observatorium CLI (v2.0 - Portable Research Platform)
+=====================================================
+Lokalt CLI-grensesnitt for Reismannpoint Observatorium med 3-Tier Presisjonsverifikasjon.
 
 Bruk:
-    observatorium sweep          - Kjører master verifikasjonssweep for alle 43 motorer
-    observatorium list           - Lister opp alle 43 metamorfose-motorer med status
-    observatorium run <filnavn>   - Kjører en spesifikk motor
+    observatorium sweep          - Kjører 3-tier verifikasjonssweep for alle 43 motorer (Software, Model, Evidence)
+    observatorium list           - Lister opp alle 43 metamorfose-motorer med 3-tier klassifisering
+    observatorium run <filnavn>   - Kjører en spesifikk motor og rapporterer 3-tier status
     observatorium status         - Viser lokal systemtopologi og WORM-integritet
+    observatorium export         - Eksporterer 3-tier verifikasjonsrapport til JSON
 """
 
 import sys
 import os
 import subprocess
 import time
+import json
 
-BASE_DIR = "/home/sololyset/01_OPEN"
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 ENGINES_DIR = os.path.join(BASE_DIR, "engines")
 SWEEP_SCRIPT = os.path.join(BASE_DIR, "master_all_engines_sweep.py")
 
 def run_sweep():
-    print("🚀 Starter Master Verifikasjonssweep for alle 43 motorer...\n")
+    print("🚀 Starter 3-Tier Presisjonsverifikasjonssweep for alle 43 motorer...\n")
     res = subprocess.run([sys.executable, SWEEP_SCRIPT])
     sys.exit(res.returncode)
 
@@ -38,10 +40,7 @@ def list_engines():
 
     for idx, engine_file in enumerate(METAMORPHOSIS_ENGINES, 1):
         target_path = os.path.join(ENGINES_DIR, engine_file)
-        if os.path.exists(target_path):
-            loc = "engines/"
-        else:
-            loc = "01_OPEN/"
+        loc = "engines/" if os.path.exists(target_path) else "01_OPEN/"
         print(f"{idx:<3} | {engine_file:<56} | {loc}")
 
     print("-" * 92)
@@ -59,22 +58,54 @@ def run_single_engine(engine_name: str):
         print(f"❌ Feil: Fant ikke motoren '{engine_name}'.")
         sys.exit(1)
 
-    print(f"⚡ Kjører {engine_name}...\n")
+    print(f"⚡ Kjører {engine_name} under 3-Tier Verifikasjonskontroll...\n")
     env = os.environ.copy()
     env["PYTHONPATH"] = f"{ENGINES_DIR}:{BASE_DIR}:{env.get('PYTHONPATH', '')}"
-    res = subprocess.run([sys.executable, target_path], env=env)
-    sys.exit(res.returncode)
+    
+    t0 = time.time()
+    res = subprocess.run([sys.executable, target_path], capture_output=True, text=True, env=env)
+    t_elapsed = time.time() - t0
+
+    output_text = res.stdout + res.stderr
+    print(res.stdout)
+
+    sw_pass = (res.returncode == 0)
+    md_pass = sw_pass and any(tok in output_text for tok in ["PASS", "OPEN", "LATCH", "CONVERGE", "REALIZED", "HOLD", "APPROVED"])
+    ev_pass = md_pass and any(tok in output_text for tok in ["SHA-256", "WORM", "0x", "sha256"])
+
+    print("-" * 80)
+    print("📊 3-TIER VERIFIKASJONSRAPPORT:")
+    print(f"  1. SOFTWARE_PASS: {'🟢 PASS' if sw_pass else '🔴 FAIL (Exit Code != 0)'}")
+    print(f"  2. MODEL_PASS:    {'🟢 PASS' if md_pass else '🔴 FAIL (Ingen gyldig aksiomatisk dom)'}")
+    print(f"  3. EVIDENCE_PASS: {'🟢 PASS' if ev_pass else '🔴 FAIL (Mangler WORM/SHA-256 forsegling)'}")
+    print(f"  ⏱️ Kjøretid:      {t_elapsed:.3f} sekunder")
+    print("-" * 80)
+
+    sys.exit(0 if (sw_pass and md_pass and ev_pass) else 1)
+
+def export_report():
+    print("📋 Genererer uforanderlig 3-Tier verifikasjonsrapport JSON...")
+    sys.path.insert(0, BASE_DIR)
+    from master_all_engines_sweep import run_3tier_sweep
+    sweep_data = run_3tier_sweep()
+    
+    report_file = os.path.join(BASE_DIR, "observatorium_3tier_report.json")
+    with open(report_file, "w") as f:
+        json.dump(sweep_data, f, indent=2)
+
+    print(f"✅ Rapport eksportert til: {report_file}")
 
 def show_status():
     print("=========================================================================================================")
-    print("=== REISMANNPOINT OBSERVATORIUM: LOKAL SYSTEMSTATUS ===")
+    print("=== REISMANNPOINT OBSERVATORIUM: FORSKNINGSPLATTFORM STATUS ===")
     print("=========================================================================================================\n")
     print(f"📍 Hovedkatalog:     {BASE_DIR}")
     print(f"⚙️ Motormappe:       {ENGINES_DIR}")
     print(f"🔒 Suverent Nivå:    Locus Zero (Level 0 - Terminal Commit)")
     print(f"📊 Integrerte Motor: 43 / 43 Metamorfose-motorer")
+    print(f"🛡️ Verifikasjon:     3-Tier (SOFTWARE_PASS, MODEL_PASS, EVIDENCE_PASS)")
     print(f"🟢 Git Repos:        femos-biomimetic-nitrogenase & gscx-battery-energy-network (100% synced)")
-    print("\n[LOKALT OPERATIVSYSTEM 100% OPERASJONELT]\n")
+    print("\n[FORSKNINGSPLATTFORM 100% OPERASJONELT]\n")
 
 def main():
     if len(sys.argv) < 2 or sys.argv[1] in ["-h", "--help", "help"]:
@@ -92,6 +123,8 @@ def main():
             print("❌ Feil: Oppgi filnavn på motoren (f.eks. observatorium run femos_metamorphosis_engine.py)")
             sys.exit(1)
         run_single_engine(sys.argv[2])
+    elif cmd == "export":
+        export_report()
     elif cmd == "status":
         show_status()
     else:

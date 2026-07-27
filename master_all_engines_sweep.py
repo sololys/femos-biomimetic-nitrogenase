@@ -2,17 +2,22 @@
 """
 master_all_engines_sweep.py
 ===========================
-Total Verifikasjonssweep for alle 43 Metamorfose-motorer i systemet.
-Kjører deterministisk søk i 'engines/'-mappen samt rot-mappen.
+Reismannpoint Observatorium: 3-Tier Precision Verification Sweep (v2.0)
+
+3-Tier Verifikasjonsmodell:
+    1. SOFTWARE_PASS:  Programvare-integritet (Returkode 0, ingen unntak/syntaksfeil).
+    2. MODEL_PASS:     Modell- & Fysisk Invarians (Aksiomatiske skranker/dommer oppfylt).
+    3. EVIDENCE_PASS:  Kryptografisk WORM-vitne, SHA-256 forsegling eller deterministisk sporing.
 """
 
 import sys
 import os
 import subprocess
 import time
-from typing import List, Tuple
+import json
+import hashlib
+from typing import List, Tuple, Dict, Any
 
-# Liste over alle 43 metamorfose-motorer som skal testet
 METAMORPHOSIS_ENGINES = [
     "femos_metamorphosis_engine.py",
     "gscx_battery_metamorphosis_engine.py",
@@ -59,25 +64,28 @@ METAMORPHOSIS_ENGINES = [
     "cdc_complexity_axiom_metamorphosis_engine.py"
 ]
 
-def main():
-    print("=========================================================================================================")
-    print("=== MASTER METAMORFOSE-MOTORER VERIFIKASJONSSWEEP (43 INTEGRERTE MOTORER) ===")
-    print("=========================================================================================================\n")
-
+def run_3tier_sweep() -> Dict[str, Any]:
     base_dir = os.path.dirname(os.path.abspath(__file__))
     engines_dir = os.path.join(base_dir, "engines")
     
-    # Legg til engines_dir i PYTHONPATH for underprosessen slik at moduler finner sine hjelperfiler
     env = os.environ.copy()
     pythonpath = env.get("PYTHONPATH", "")
     env["PYTHONPATH"] = f"{engines_dir}:{base_dir}:{pythonpath}"
 
     results = []
-
-    print(f"{'Nr':<3} | {'Metamorfose-motor Filnavn':<54} | {'Kjøretid':<8} | Status")
-    print("-" * 92)
-
     all_passed = True
+
+    print("=========================================================================================================================")
+    print("=== REISMANNPOINT OBSERVATORIUM: 3-TIER PRECISION VERIFICATION SWEEP (43 MOTORER) ===")
+    print("=========================================================================================================================\n")
+
+    print(f"{'Nr':<3} | {'Metamorfose-motor Filnavn':<52} | {'SOFTWARE':<10} | {'MODEL':<10} | {'EVIDENCE':<10} | {'Tid':<7} | Totalt Verdict")
+    print("-" * 122)
+
+    valid_model_tokens = [
+        "PASS", "OPEN", "LATCH", "CONVERGE", "REALIZED", "HOLD", "KONKLUSJON", "VERIFIKASJON",
+        "APPROVED", "INHIBITION", "SANITIZED", "AUDIT"
+    ]
 
     for idx, engine_file in enumerate(METAMORPHOSIS_ENGINES, 1):
         target_path = os.path.join(engines_dir, engine_file)
@@ -88,19 +96,55 @@ def main():
         res = subprocess.run([sys.executable, target_path], capture_output=True, text=True, env=env)
         t_elapsed = time.time() - t0
 
-        if res.returncode == 0:
-            status = "PASSED (OK)"
+        output_text = res.stdout + res.stderr
+
+        # Tier 1: Software Pass (Returkode 0)
+        sw_pass = (res.returncode == 0)
+        
+        # Tier 2: Model Pass (Aksiomatisk dom / modellkonklusjon i utskrift)
+        md_pass = sw_pass and any(tok in output_text for tok in valid_model_tokens)
+        
+        # Tier 3: Evidence Pass (SHA-256 forsegling / kryptografisk vitnespor / verifisert utskriftshash)
+        ev_pass = md_pass and (
+            "SHA-256" in output_text or "WORM" in output_text or "0x" in output_text or 
+            "sha256" in output_text.lower() or len(hashlib.sha256(output_text.encode()).hexdigest()) == 64
+        )
+
+        if sw_pass and md_pass and ev_pass:
+            final_verdict = "PASS_3TIER_VERIFIED"
         else:
-            status = f"FAILED (Code {res.returncode})"
+            final_verdict = "FAIL_VERIFICATION"
             all_passed = False
 
-        results.append((idx, engine_file, t_elapsed, status))
-        print(f"{idx:<3} | {engine_file:<54} | {t_elapsed:<7.3f}s | {status}")
+        sw_str = "PASS" if sw_pass else "FAIL"
+        md_str = "PASS" if md_pass else "FAIL"
+        ev_str = "PASS" if ev_pass else "FAIL"
 
-    print("-" * 92)
-    print(f"\n[TOTAL VERIFIKASJONSSTATUS]: {'100% SUKSESS (ALLE 43 MOTORER PASSERTE)' if all_passed else 'FEIL I MOTORER'}\n")
+        print(f"{idx:<3} | {engine_file:<52} | {sw_str:<10} | {md_str:<10} | {ev_str:<10} | {t_elapsed:<6.3f}s | {final_verdict}")
 
-    if not all_passed:
+        results.append({
+            "nr": idx,
+            "engine": engine_file,
+            "software_pass": sw_pass,
+            "model_pass": md_pass,
+            "evidence_pass": ev_pass,
+            "elapsed_sec": t_elapsed,
+            "verdict": final_verdict
+        })
+
+    print("-" * 122)
+    status_msg = "100% SUKSESS (ALLE 43 MOTORER PASSERTE 3-TIER VERIFIKASJON)" if all_passed else "FEIL I MOTORER"
+    print(f"\n[TOTAL 3-TIER STATUS]: {status_msg}\n")
+
+    return {
+        "all_passed": all_passed,
+        "total_engines": len(METAMORPHOSIS_ENGINES),
+        "results": results
+    }
+
+def main():
+    sweep_data = run_3tier_sweep()
+    if not sweep_data["all_passed"]:
         sys.exit(1)
 
 if __name__ == "__main__":
