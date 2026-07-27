@@ -1,4 +1,4 @@
-import json, hashlib, datetime, numpy as np, sys, time, math
+import os, json, hashlib, datetime, numpy as np, sys, time, math
 from collections import deque
 
 class GKO_Engine:
@@ -41,6 +41,7 @@ class GKO_Engine:
                 "CHAIN_DATA": self.chain
             }
         }
+        os.makedirs("manifests", exist_ok=True)
         with open("manifests/system_manifest_v2.json", "w") as f:
             json.dump(manifest, f, indent=2)
         print("[OK] system_manifest_v2.json krystallisert.")
