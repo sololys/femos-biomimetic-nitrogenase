@@ -68,6 +68,14 @@ jobs:
       run: |
         python qcs_omni_metamorphosis_engine.py
 
+    - name: Run Rosetta Trit Compiler (rosetta_trit_compiler.py)
+      run: |
+        python rosetta_trit_compiler.py
+
+    - name: Run Omega Rosetta Visualizer (omega_rosetta.py)
+      run: |
+        python omega_rosetta.py --once
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
