@@ -100,6 +100,14 @@ jobs:
       run: |
         python omni_full_metamorphosis_engine.py
 
+    - name: Run IKS Pure Inversion Node (iks_pure_inversion_node.py)
+      run: |
+        python iks_pure_inversion_node.py
+
+    - name: Run IKS Reversible Metamorphosis Engine (iks_reversible_metamorphosis_engine.py)
+      run: |
+        python iks_reversible_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
