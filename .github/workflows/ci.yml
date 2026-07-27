@@ -92,6 +92,14 @@ jobs:
       run: |
         python etor2_metamorphosis_engine.py
 
+    - name: Run OMNI Core Loop (omni_core.py)
+      run: |
+        python omni_core.py
+
+    - name: Run OMNI Full Metamorphosis Engine (omni_full_metamorphosis_engine.py)
+      run: |
+        python omni_full_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
