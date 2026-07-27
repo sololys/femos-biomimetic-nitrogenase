@@ -128,6 +128,14 @@ jobs:
       run: |
         python cpcab_hydrogen_control_metamorphosis_engine.py
 
+    - name: Run Ghidan Capacity Gate (ghidan_capacity_gate.py)
+      run: |
+        python ghidan_capacity_gate.py
+
+    - name: Run CVTK & CAPA Metamorphosis Engine (cvtk_capa_metamorphosis_engine.py)
+      run: |
+        python cvtk_capa_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
