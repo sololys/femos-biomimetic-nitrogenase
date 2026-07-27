@@ -84,6 +84,14 @@ jobs:
       run: |
         python arkitektens_nullpunkt_engine.py
 
+    - name: Run ETOR2 Hardware Latch Engine (etor_v2_engine.py)
+      run: |
+        python etor_v2_engine.py
+
+    - name: Run ETOR2 Metamorphosis Engine (etor2_metamorphosis_engine.py)
+      run: |
+        python etor2_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
