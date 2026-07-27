@@ -3,6 +3,7 @@
 master_all_engines_sweep.py
 ===========================
 Total Verifikasjonssweep for alle 42 Metamorfose-motorer i systemet.
+Kjører deterministisk søk i 'engines/'-mappen samt rot-mappen.
 """
 
 import sys
@@ -62,7 +63,14 @@ def main():
     print("=== MASTER METAMORFOSE-MOTORER VERIFIKASJONSSWEEP (42 INTEGRERTE MOTORER) ===")
     print("=========================================================================================================\n")
 
-    base_dir = "/home/sololyset/01_OPEN"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    engines_dir = os.path.join(base_dir, "engines")
+    
+    # Legg til engines_dir i PYTHONPATH for underprosessen slik at moduler finner sine hjelperfiler
+    env = os.environ.copy()
+    pythonpath = env.get("PYTHONPATH", "")
+    env["PYTHONPATH"] = f"{engines_dir}:{base_dir}:{pythonpath}"
+
     results = []
 
     print(f"{'Nr':<3} | {'Metamorfose-motor Filnavn':<54} | {'Kjøretid':<8} | Status")
@@ -71,12 +79,12 @@ def main():
     all_passed = True
 
     for idx, engine_file in enumerate(METAMORPHOSIS_ENGINES, 1):
-        full_path = os.path.join(base_dir, engine_file)
-        if not os.path.exists(full_path):
-            full_path = os.path.join("/home/sololyset", engine_file)
+        target_path = os.path.join(engines_dir, engine_file)
+        if not os.path.exists(target_path):
+            target_path = os.path.join(base_dir, engine_file)
 
         t0 = time.time()
-        res = subprocess.run([sys.executable, full_path], capture_output=True, text=True)
+        res = subprocess.run([sys.executable, target_path], capture_output=True, text=True, env=env)
         t_elapsed = time.time() - t0
 
         if res.returncode == 0:
@@ -90,6 +98,9 @@ def main():
 
     print("-" * 92)
     print(f"\n[TOTAL VERIFIKASJONSSTATUS]: {'100% SUKSESS (ALLE 42 MOTORER PASSERTE)' if all_passed else 'FEIL I MOTORER'}\n")
+
+    if not all_passed:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

@@ -2,11 +2,11 @@ import numpy as np
 import time
 
 # --- Systemparametere (fra spesifikasjon) ---
-Ts = 0.1  # Prøvetid i sekunder [cite: 32, 67]
-HT_DEAD_TIME = 1.7  # sekunder [cite: 29, 34]
+Ts = 0.1  # Prøvetid i sekunder
+HT_DEAD_TIME = 1.7  # sekunder
 HT_TIME_CONSTANT = 90.0  # sekunder 
 
-# ORS Sikkerhetsgrenser [cite: 46]
+# ORS Sikkerhetsgrenser
 MAX_SATURATION_TIME = 5.0  
 FIDELITY_THRESHOLD = 0.9999
 
@@ -25,23 +25,23 @@ class H2VestaSimulator:
 
     def update(self, u, fidelity=1.0):
         if self.is_aborted:
-            return "SYSTEM_HALT: Sticky ABORT aktiv. Manuell reset kreves." [cite: 47, 156]
+            return "SYSTEM_HALT: Sticky ABORT aktiv. Manuell reset kreves."
 
-        # 1. ORS Sjekk: Aktuator-metning [cite: 46]
+        # 1. ORS Sjekk: Aktuator-metning
         if u >= 1.0: # Antar 1.0 er maks pådrag
             self.sat_timer += Ts
             if self.sat_timer > MAX_SATURATION_TIME:
                 self.is_aborted = True
-                return "ABORT: Aktuator-metning overskredet 5s." [cite: 46, 147]
+                return "ABORT: Aktuator-metning overskredet 5s."
         else:
             self.sat_timer = 0.0
 
-        # 2. ORS Sjekk: Fidelity/Koherens [cite: 46]
+        # 2. ORS Sjekk: Fidelity/Koherens
         if fidelity < FIDELITY_THRESHOLD:
             self.is_aborted = True
-            return "ABORT: Fidelity/koherens feil." [cite: 46, 154]
+            return "ABORT: Fidelity/koherens feil."
 
-        # 3. Smith Predictor logikk [cite: 29, 130]
+        # 3. Smith Predictor logikk
         # Prediksjon uten dødtid
         self.state_model = self.a * self.state_model + self.b * u
         
@@ -54,12 +54,11 @@ class H2VestaSimulator:
         
         return f"HT_Temp_Est: {self.state_model:.2f}, Plant_Actual: {self.state_plant:.2f}"
 
-# --- Kjøring av simulering ---
-sim = H2VestaSimulator()
-print("Starter H2-VESTA Digital Tvilling (Ts=0.1s)...")
+if __name__ == "__main__":
+    # --- Kjøring av simulering ---
+    sim = H2VestaSimulator()
+    print("Starter H2-VESTA Digital Tvilling (Ts=0.1s)...")
 
-for i in range(100):
-    # Simulerer et pådrag (u) og stabil fidelity
-    result = sim.update(u=0.8, fidelity=1.0)
-    print(result)
-    time.sleep(0.01) # Raskere enn sanntid for test
+    for i in range(10):
+        result = sim.update(u=0.8, fidelity=1.0)
+        print(result)
