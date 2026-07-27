@@ -116,6 +116,14 @@ jobs:
       run: |
         python holomorphic_holographic_metamorphosis_engine.py
 
+    - name: Run GKO Engine (gko_engine.py)
+      run: |
+        python gko_engine.py
+
+    - name: Run GKO-OS 3.0 Metamorphosis Engine (gko_os3_metamorphosis_engine.py)
+      run: |
+        python gko_os3_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
