@@ -136,6 +136,18 @@ jobs:
       run: |
         python cvtk_capa_metamorphosis_engine.py
 
+    - name: Run KY-ROX Alphabet Engine (ky_rox_alphabet.py)
+      run: |
+        python ky_rox_alphabet.py
+
+    - name: Run Transmon KY Gate Engine (transmon_ky_gate_engine.py)
+      run: |
+        python transmon_ky_gate_engine.py
+
+    - name: Run KY & KY-ROX Master Metamorphosis Engine (ky_rox_master_metamorphosis_engine.py)
+      run: |
+        python ky_rox_master_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
