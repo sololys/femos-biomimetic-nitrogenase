@@ -124,6 +124,10 @@ jobs:
       run: |
         python gko_os3_metamorphosis_engine.py
 
+    - name: Run CPCA-B & Hydrogen Control Engine (cpcab_hydrogen_control_metamorphosis_engine.py)
+      run: |
+        python cpcab_hydrogen_control_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
