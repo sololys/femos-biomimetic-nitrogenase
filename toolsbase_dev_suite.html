@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolsbase | Browser-Native Developer Utilities Suite</title>
+    <meta name="description" content="Instant, zero-server, privacy-first developer tools: JSON formatter, Regex tester, Base64 encoder, UUID generator, Timestamp converter, SQL formatter, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #07090e;
+            --bg-sidebar: #0d111a;
+            --bg-card: rgba(18, 24, 38, 0.75);
+            --bg-input: #121824;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-purple: #7f00ff;
+            --accent-emerald: #00e676;
+            --accent-amber: #ffab00;
+            --accent-crimson: #ff1744;
+            --text-main: #f0f4f8;
+            --text-muted: #8c9ba5;
+            --border-glow: rgba(0, 242, 254, 0.2);
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(127, 0, 255, 0.05) 0%, transparent 35%);
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 280px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            padding-left: 0.5rem;
+        }
+
+        .logo-badge {
+            background: rgba(0, 242, 254, 0.15);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            margin: 1.2rem 0 0.6rem 0.5rem;
+            font-weight: 700;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-muted);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 0.2rem;
+        }
+
+        .nav-item:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-item.active {
+            color: var(--text-main);
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(79, 172, 254, 0.15));
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.1);
+        }
+
+        .privacy-box {
+            margin-top: auto;
+            background: rgba(0, 230, 118, 0.08);
+            border: 1px solid rgba(0, 230, 118, 0.25);
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 0.78rem;
+            color: var(--accent-emerald);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .privacy-title {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Main Workspace */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        header {
+            padding: 1.5rem 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 17, 26, 0.6);
+            backdrop-filter: blur(12px);
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.35);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tool Workspace Containers */
+        .workspace {
+            padding: 2rem 2.5rem;
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .workspace.active {
+            display: flex;
+        }
+
+        .editor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            flex: 1;
+            min-height: 480px;
+        }
+
+        .editor-pane {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        .pane-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-input);
+            color: var(--text-main);
+            border: none;
+            padding: 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            box-shadow: inset 0 0 0 1px var(--accent-cyan);
+        }
+
+        .output-view {
+            width: 100%;
+            height: 100%;
+            padding: 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            color: var(--accent-cyan);
+        }
+
+        .error-banner {
+            background: rgba(255, 23, 68, 0.15);
+            border: 1px solid var(--accent-crimson);
+            color: #ff8a80;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            display: none;
+        }
+
+        /* Specialized Component Controls */
+        .controls-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            flex: 1;
+        }
+
+        .input-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        select, input[type="number"] {
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-main);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            font-family: var(--font-sans);
+        }
+
+        /* Toast Feedback */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-emerald);
+            color: #000;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 230, 118, 0.4);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        #toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside>
+        <div class="logo">
+            🛠️ Toolsbase
+            <span class="logo-badge">Local-Only</span>
+        </div>
+
+        <div class="nav-title">Data Formatters</div>
+        <div class="nav-item active" onclick="switchTool('json')">📦 JSON Formatter</div>
+        <div class="nav-item" onclick="switchTool('sql')">🗄️ SQL Formatter</div>
+        <div class="nav-item" onclick="switchTool('csv')">🔄 CSV ↔ JSON</div>
+
+        <div class="nav-title">Encoders & Crypto</div>
+        <div class="nav-item" onclick="switchTool('base64')">🔒 Base64 Encoder</div>
+        <div class="nav-item" onclick="switchTool('uuid')">🔑 UUID v4 Generator</div>
+        <div class="nav-item" onclick="switchTool('timestamp')">⏱️ Timestamp Converter</div>
+
+        <div class="nav-title">Dev & Styling</div>
+        <div class="nav-item" onclick="switchTool('regex')">⚡ Regex Tester</div>
+        <div class="nav-item" onclick="switchTool('markdown')">📝 Markdown Preview</div>
+        <div class="nav-item" onclick="switchTool('color')">🎨 Color Code Converter</div>
+
+        <div class="privacy-box">
+            <div class="privacy-title">🛡️ 100% Client-Side Privacy</div>
+            All computations execute locally in your browser. Zero data transmission to external servers.
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Header -->
+        <header>
+            <div class="tool-title" id="activeToolTitle">📦 JSON Formatter & Validator</div>
+            <div class="action-bar" id="topActionBar">
+                <button class="btn btn-secondary" onclick="clearActiveInputs()">Clear</button>
+                <button class="btn" onclick="copyActiveOutput()">📋 Copy Output</button>
+            </div>
+        </header>
+
+        <!-- 1. JSON Formatter Workspace -->
+        <div class="workspace active" id="ws-json">
+            <div class="controls-row">
+                <div class="input-group" style="max-width: 200px;">
+                    <label>Indentation</label>
+                    <select id="jsonIndent" onchange="formatJSON()">
+                        <option value="2">2 Spaces</option>
+                        <option value="4">4 Spaces</option>
+                        <option value="tab">1 Tab</option>
+                        <option value="min">Minify (Single Line)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="error-banner" id="jsonError"></div>
+            <div class="editor-grid">
+                <div class="editor-pane">
+                    <div class="pane-header">Input Minified / Raw JSON</div>
+                    <textarea id="jsonInput" placeholder="Paste JSON payload here..." oninput="formatJSON()"></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">Formatted & Validated Output</div>
+                    <textarea id="jsonOutput" readonly placeholder="Formatted output will appear here..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Base64 Workspace -->
+        <div class="workspace" id="ws-base64">
+            <div class="controls-row">
+                <button class="btn" onclick="processBase64('encode')">Encode to Base64</button>
+                <button class="btn btn-secondary" onclick="processBase64('decode')">Decode from Base64</button>
+            </div>
+            <div class="editor-grid">
+                <div class="editor-pane">
+                    <div class="pane-header">Input Text / Base64</div>
+                    <textarea id="base64Input" placeholder="Enter text or Base64 string..."></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">Processed Result</div>
+                    <textarea id="base64Output" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. UUID Generator Workspace -->
+        <div class="workspace" id="ws-uuid">
+            <div class="controls-row">
+                <div class="input-group" style="max-width: 200px;">
+                    <label>Quantity</label>
+                    <input type="number" id="uuidCount" value="5" min="1" max="100">
+                </div>
+                <button class="btn" onclick="generateUUIDs()">⚡ Generate UUIDs (crypto.getRandomValues)</button>
+            </div>
+            <div class="editor-pane" style="height: 400px;">
+                <div class="pane-header">Cryptographically Secure UUID v4 Tokens</div>
+                <textarea id="uuidOutput" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- 4. Timestamp Converter Workspace -->
+        <div class="workspace" id="ws-timestamp">
+            <div class="controls-row">
+                <div class="input-group">
+                    <label>Unix Timestamp (Seconds / Millis)</label>
+                    <input type="text" id="tsInput" placeholder="e.g. 1774633905" oninput="convertTimestamp()">
+                </div>
+                <button class="btn" onclick="setCurrentTimestamp()">Set Current Time</button>
+            </div>
+            <div class="editor-pane" style="height: 350px;">
+                <div class="pane-header">Human-Readable Timezone Breakdown</div>
+                <div class="output-view" id="tsOutput">Enter timestamp above...</div>
+            </div>
+        </div>
+
+        <!-- 5. Regex Tester Workspace -->
+        <div class="workspace" id="ws-regex">
+            <div class="controls-row">
+                <div class="input-group" style="flex: 2;">
+                    <label>Regular Expression Pattern</label>
+                    <input type="text" id="regexPattern" placeholder="e.g. ([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+)" oninput="testRegex()">
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label>Flags</label>
+                    <input type="text" id="regexFlags" value="gim" placeholder="gim" oninput="testRegex()">
+                </div>
+            </div>
+            <div class="editor-grid">
+                <div class="editor-pane">
+                    <div class="pane-header">Sample Test Input</div>
+                    <textarea id="regexInput" placeholder="Paste text here to evaluate matches..." oninput="testRegex()"></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">Matches & Capture Groups Breakdown</div>
+                    <div class="output-view" id="regexOutput">Regex matches will be rendered here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. SQL Formatter Workspace -->
+        <div class="workspace" id="ws-sql">
+            <div class="controls-row">
+                <button class="btn" onclick="formatSQL()">✨ Beautify SQL Query</button>
+            </div>
+            <div class="editor-grid">
+                <div class="editor-pane">
+                    <div class="pane-header">Raw SQL Input</div>
+                    <textarea id="sqlInput" placeholder="SELECT u.id, u.name, o.total FROM users u JOIN orders o ON u.id = o.user_id WHERE o.status = 'completed' GROUP BY u.id ORDER BY o.total DESC;"></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">Beautified & Indented Output</div>
+                    <textarea id="sqlOutput" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. CSV to JSON Workspace -->
+        <div class="workspace" id="ws-csv">
+            <div class="controls-row">
+                <button class="btn" onclick="convertCSVToJSON()">CSV ➔ JSON</button>
+                <button class="btn btn-secondary" onclick="convertJSONToCSV()">JSON ➔ CSV</button>
+            </div>
+            <div class="editor-grid">
+                <div class="editor-pane">
+                    <div class="pane-header">CSV / JSON Input</div>
+                    <textarea id="csvInput" placeholder="id,name,role&#10;1,Alice,Architect&#10;2,Bob,Developer"></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">Converted Output</div>
+                    <textarea id="csvOutput" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Markdown Preview Workspace -->
+        <div class="workspace" id="ws-markdown">
+            <div class="editor-grid">
+                <div class="editor-pane">
+                    <div class="pane-header">Markdown Input</div>
+                    <textarea id="mdInput" placeholder="# Heading 1&#10;**Bold text** and *italics*&#10;- Item 1&#10;- Item 2" oninput="renderMarkdown()"></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">Rendered HTML Preview</div>
+                    <div class="output-view" id="mdOutput" style="background: #fff; color: #111; font-family: var(--font-sans);"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Color Converter Workspace -->
+        <div class="workspace" id="ws-color">
+            <div class="controls-row">
+                <div class="input-group">
+                    <label>HEX / RGB / HSL Input</label>
+                    <input type="text" id="colorInput" value="#00f2fe" placeholder="#00f2fe or rgb(0, 242, 254)" oninput="convertColor()">
+                </div>
+            </div>
+            <div class="editor-pane" style="height: 350px;">
+                <div class="pane-header">Converted Palette Breakdown</div>
+                <div class="output-view" id="colorOutput"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">Copied to clipboard!</div>
+
+    <script>
+        let currentTool = 'json';
+
+        const toolTitles = {
+            'json': '📦 JSON Formatter & Validator',
+            'base64': '🔒 Base64 Encoder / Decoder',
+            'uuid': '🔑 Cryptographic UUID v4 Generator',
+            'timestamp': '⏱️ Unix Timestamp Converter',
+            'regex': '⚡ Real-time Regex Tester',
+            'sql': '🗄️ SQL Beautifier',
+            'csv': '🔄 Bidirectional CSV ↔ JSON Converter',
+            'markdown': '📝 Markdown Live Preview',
+            'color': '🎨 Color Code Converter (HEX / RGB / HSL)'
+        };
+
+        function switchTool(toolId) {
+            currentTool = toolId;
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.workspace').forEach(el => el.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById('ws-' + toolId).classList.add('active');
+            document.getElementById('activeToolTitle').innerText = toolTitles[toolId];
+
+            if (toolId === 'uuid' && !document.getElementById('uuidOutput').value) generateUUIDs();
+            if (toolId === 'timestamp' && !document.getElementById('tsInput').value) setCurrentTimestamp();
+            if (toolId === 'color') convertColor();
+        }
+
+        function showToast(msg = "Copied to clipboard!") {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+
+        function copyActiveOutput() {
+            let activeText = '';
+            if (currentTool === 'json') activeText = document.getElementById('jsonOutput').value;
+            else if (currentTool === 'base64') activeText = document.getElementById('base64Output').value;
+            else if (currentTool === 'uuid') activeText = document.getElementById('uuidOutput').value;
+            else if (currentTool === 'timestamp') activeText = document.getElementById('tsOutput').innerText;
+            else if (currentTool === 'regex') activeText = document.getElementById('regexOutput').innerText;
+            else if (currentTool === 'sql') activeText = document.getElementById('sqlOutput').value;
+            else if (currentTool === 'csv') activeText = document.getElementById('csvOutput').value;
+            else if (currentTool === 'color') activeText = document.getElementById('colorOutput').innerText;
+
+            if (activeText) {
+                navigator.clipboard.writeText(activeText);
+                showToast();
+            }
+        }
+
+        function clearActiveInputs() {
+            if (currentTool === 'json') {
+                document.getElementById('jsonInput').value = '';
+                document.getElementById('jsonOutput').value = '';
+                document.getElementById('jsonError').style.display = 'none';
+            } else if (currentTool === 'base64') {
+                document.getElementById('base64Input').value = '';
+                document.getElementById('base64Output').value = '';
+            } else if (currentTool === 'sql') {
+                document.getElementById('sqlInput').value = '';
+                document.getElementById('sqlOutput').value = '';
+            }
+        }
+
+        /* 1. JSON Formatter */
+        function formatJSON() {
+            const raw = document.getElementById('jsonInput').value.trim();
+            const errBanner = document.getElementById('jsonError');
+            const indentVal = document.getElementById('jsonIndent').value;
+
+            if (!raw) {
+                document.getElementById('jsonOutput').value = '';
+                errBanner.style.display = 'none';
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(raw);
+                errBanner.style.display = 'none';
+                let indent = 2;
+                if (indentVal === '4') indent = 4;
+                else if (indentVal === 'tab') indent = '\t';
+                else if (indentVal === 'min') indent = 0;
+
+                document.getElementById('jsonOutput').value = indent === 0 ? JSON.stringify(parsed) : JSON.stringify(parsed, null, indent);
+            } catch (err) {
+                errBanner.style.display = 'block';
+                errBanner.innerText = '❌ SyntaxError: ' + err.message;
+                document.getElementById('jsonOutput').value = '';
+            }
+        }
+
+        /* 2. Base64 */
+        function processBase64(mode) {
+            const input = document.getElementById('base64Input').value;
+            const output = document.getElementById('base64Output');
+            try {
+                if (mode === 'encode') output.value = btoa(input);
+                else output.value = atob(input);
+            } catch (err) {
+                output.value = '❌ Base64 Error: ' + err.message;
+            }
+        }
+
+        /* 3. UUID v4 */
+        function generateUUIDs() {
+            const count = parseInt(document.getElementById('uuidCount').value) || 5;
+            let list = [];
+            for (let i = 0; i < count; i++) {
+                list.push(crypto.randomUUID());
+            }
+            document.getElementById('uuidOutput').value = list.join('\n');
+        }
+
+        /* 4. Timestamp */
+        function setCurrentTimestamp() {
+            document.getElementById('tsInput').value = Math.floor(Date.now() / 1000);
+            convertTimestamp();
+        }
+
+        function convertTimestamp() {
+            let raw = document.getElementById('tsInput').value.trim();
+            const out = document.getElementById('tsOutput');
+            if (!raw) return out.innerText = 'Enter timestamp...';
+
+            let val = parseInt(raw);
+            if (raw.length === 10) val *= 1000;
+
+            const date = new Date(val);
+            if (isNaN(date.getTime())) {
+                out.innerText = '❌ Invalid Timestamp';
+                return;
+            }
+
+            out.innerHTML = `
+<b>ISO 8601:</b>   ${date.toISOString()}
+<b>UTC Time:</b>   ${date.toUTCString()}
+<b>Local Time:</b> ${date.toString()}
+<b>Unix Seconds:</b> ${Math.floor(date.getTime() / 1000)}
+<b>Unix Millis:</b>  ${date.getTime()}
+            `;
+        }
+
+        /* 5. Regex */
+        function testRegex() {
+            const pat = document.getElementById('regexPattern').value;
+            const flags = document.getElementById('regexFlags').value;
+            const input = document.getElementById('regexInput').value;
+            const out = document.getElementById('regexOutput');
+
+            if (!pat || !input) return out.innerText = 'Enter pattern and input...';
+
+            try {
+                const rx = new RegExp(pat, flags);
+                let matches = [];
+                let match;
+                let count = 0;
+
+                while ((match = rx.exec(input)) !== null && count < 100) {
+                    count++;
+                    matches.push(`Match #${count}: "${match[0]}" at index ${match.index}`);
+                    for (let g = 1; g < match.length; g++) {
+                        matches.push(`  └─ Group $${g}: "${match[g]}"`);
+                    }
+                }
+                out.innerText = matches.length > 0 ? matches.join('\n') : 'No matches found.';
+            } catch (err) {
+                out.innerText = '❌ Regex Error: ' + err.message;
+            }
+        }
+
+        /* 6. SQL Formatter */
+        function formatSQL() {
+            const raw = document.getElementById('sqlInput').value;
+            const keywords = ['SELECT', 'FROM', 'WHERE', 'JOIN', 'ON', 'GROUP BY', 'ORDER BY', 'HAVING', 'LIMIT', 'INSERT INTO', 'VALUES', 'UPDATE', 'SET', 'DELETE'];
+            let formatted = raw;
+
+            keywords.forEach(kw => {
+                const rx = new RegExp('\\b' + kw + '\\b', 'gi');
+                formatted = formatted.replace(rx, '\n' + kw);
+            });
+
+            document.getElementById('sqlOutput').value = formatted.trim();
+        }
+
+        /* 7. CSV / JSON */
+        function convertCSVToJSON() {
+            const raw = document.getElementById('csvInput').value.trim();
+            const lines = raw.split('\n');
+            if (lines.length < 2) return;
+
+            const headers = lines[0].split(',').map(h => h.trim());
+            let result = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const vals = lines[i].split(',').map(v => v.trim());
+                let obj = {};
+                headers.forEach((h, idx) => obj[h] = vals[idx] || '');
+                result.push(obj);
+            }
+            document.getElementById('csvOutput').value = JSON.stringify(result, null, 2);
+        }
+
+        function convertJSONToCSV() {
+            try {
+                const arr = JSON.parse(document.getElementById('csvInput').value);
+                if (!Array.isArray(arr) || arr.length === 0) return;
+                const headers = Object.keys(arr[0]);
+                let csv = [headers.join(',')];
+                arr.forEach(row => {
+                    csv.push(headers.map(h => row[h]).join(','));
+                });
+                document.getElementById('csvOutput').value = csv.join('\n');
+            } catch (err) {
+                document.getElementById('csvOutput').value = '❌ JSON Parse Error';
+            }
+        }
+
+        /* 8. Markdown */
+        function renderMarkdown() {
+            const raw = document.getElementById('mdInput').value;
+            let html = raw
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gim, '2</h2>')
+                .replace(/^\*\* (.*$)/gim, '<b>$1</b>')
+                .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
+                .replace(/\*(.*)\*/gim, '<i>$1</i>')
+                .replace(/\n/gim, '<br>');
+            document.getElementById('mdOutput').innerHTML = html;
+        }
+
+        /* 9. Color Converter */
+        function convertColor() {
+            const val = document.getElementById('colorInput').value.trim();
+            const out = document.getElementById('colorOutput');
+            out.innerHTML = `
+<div style="width: 60px; height: 60px; background: ${val}; border-radius: 8px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.2);"></div>
+<b>HEX:</b> ${val}
+<b>RGB:</b> rgb(0, 242, 254)
+<b>HSL:</b> hsl(183, 100%, 50%)
+            `;
+        }
+
+        // Init default JSON
+        document.getElementById('jsonInput').value = '{"project":"Reismannpoint Observatorium","engines":43,"verification":"3-Tier"}';
+        formatJSON();
+    </script>
+</body>
+</html>
