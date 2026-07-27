@@ -156,6 +156,10 @@ jobs:
       run: |
         python kreativ_morandi_metamorphosis_engine.py
 
+    - name: Run Projected Fixpoints Metamorphosis Engine (projected_fixpoints_metamorphosis_engine.py)
+      run: |
+        python projected_fixpoints_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
