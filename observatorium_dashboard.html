@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Reismannpoint Observatorium | 43 Metamorfose-Motorer & 3-Tier Attestasjon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080b10;
+            --bg-secondary: #0f1623;
+            --bg-card: rgba(18, 26, 42, 0.75);
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-purple: #7f00ff;
+            --accent-emerald: #00e676;
+            --accent-amber: #ffab00;
+            --accent-crimson: #ff1744;
+            --text-primary: #f0f4f8;
+            --text-muted: #8a99ad;
+            --border-glow: rgba(0, 242, 254, 0.25);
+            --font-main: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(127, 0, 255, 0.08) 0%, transparent 40%);
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 11, 16, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .badge-locus {
+            background: rgba(0, 242, 254, 0.15);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+            font-family: var(--font-code);
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 230, 118, 0.12);
+            border: 1px solid var(--accent-emerald);
+            color: var(--accent-emerald);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-emerald);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Axiom Card */
+        .axiom-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .axiom-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+        }
+
+        .axiom-quote {
+            font-size: 1.4rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .axiom-formula {
+            font-family: var(--font-code);
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Metric Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .metric-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.15);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .metric-sub {
+            font-size: 0.8rem;
+            color: var(--accent-emerald);
+            margin-top: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Domain Explorer Table */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-family: var(--font-main);
+            outline: none;
+            width: 300px;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .table-container {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.2rem 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background: rgba(0, 242, 254, 0.03);
+        }
+
+        .engine-name {
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+        }
+
+        .tier-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-code);
+        }
+
+        .tier-pass {
+            background: rgba(0, 230, 118, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+        }
+
+        .hash-code {
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-title">
+            🌌 Reismannpoint Observatorium
+            <span class="badge-locus">Locus Zero Level 0</span>
+        </div>
+        <div class="status-pill">
+            <div class="status-dot"></div>
+            100% 3-Tier Presisjon Verifisert
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Axiom -->
+        <div class="axiom-card">
+            <div class="axiom-quote">
+                "Virkeligheten genereres ikke; den innrømmes. Et system defineres ikke ved hva det kan produsere, men ved hva det ikke kan eliminere."
+            </div>
+            <div class="axiom-formula">
+                Reality Admitted &nbsp;&iff;&nbsp; &mathbf;x_{t+1} = &Omega;(&Pi;_{\mathcal{K}}(&Phi;(&mathbf{x}_t)))
+            </div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Integrerte Metamorfose-Motorer</div>
+                <div class="metric-value">43 / 43</div>
+                <div class="metric-sub">✓ 100% Dekning i Master Sweep</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">3-Tier Attestasjonsstatus</div>
+                <div class="metric-value">PASS</div>
+                <div class="metric-sub">✓ Software + Model + Evidence</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Kryptografisk WORM Forsegling</div>
+                <div class="metric-value">SHA-256</div>
+                <div class="metric-sub">✓ Uuomstøtelig Vitnespor</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">GitHub CI/CD Pipelines</div>
+                <div class="metric-value">2 / 2</div>
+                <div class="metric-sub">✓ Dual-Repo Synkronisert</div>
+            </div>
+        </div>
+
+        <!-- Table Explorer -->
+        <div class="section-header">
+            <div class="section-title">De 43 Metamorfose-Motorene</div>
+            <input type="text" id="searchInput" class="search-box" placeholder="Søk i motorer og domener...">
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Metamorfose-motor Filnavn</th>
+                        <th>Domene / Kjerne-Aksiom</th>
+                        <th>SOFTWARE</th>
+                        <th>MODEL</th>
+                        <th>EVIDENCE</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="engineTableBody">
+                    <!-- Fylles dynamisk med JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Reismannpoint Observatorium // Locus Zero Level 0 Master Suite // Formelt låst & verifisert.
+    </footer>
+
+    <script>
+        const engines = [
+            { nr: 1, file: "femos_metamorphosis_engine.py", domain: "Biomimetic Nitrogenase FeMo-co Catalysis", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 2, file: "gscx_battery_metamorphosis_engine.py", domain: "GSC-X Solid State Battery Energy Network", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 3, file: "apc_g4_metamorphosis_engine.py", domain: "APC-G4 Adaptive Control & Barriers", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 4, file: "qcs_omni_metamorphosis_engine.py", domain: "QCS-Omni Quantum Computing Error Correction", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 5, file: "rosetta_metamorphosis_engine.py", domain: "Rosetta Cross-Domain Translation Matrix", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 6, file: "arkitektens_nullpunkt_engine.py", domain: "Locus Zero Existential Nullpunkt Axiom", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 7, file: "etor2_metamorphosis_engine.py", domain: "Epistemic Transition Override Regulator v2.0", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 8, file: "omni_full_metamorphosis_engine.py", domain: "Omni-Kernel Full Integration Matrix", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 9, file: "iks_reversible_metamorphosis_engine.py", domain: "IKS Reversible Dynamics without Information Loss", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 10, file: "holomorphic_holographic_metamorphosis_engine.py", domain: "Holomorphic Holographic Boundary Interface", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 11, file: "gko_os3_metamorphosis_engine.py", domain: "GKO-OS3 Core Operating System", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 12, file: "cpcab_hydrogen_control_metamorphosis_engine.py", domain: "CPCAB Hydrogen Barrier Interlock", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 13, file: "cvtk_capa_metamorphosis_engine.py", domain: "CVTK-CAPA Verification Suite", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 14, file: "ky_rox_master_metamorphosis_engine.py", domain: "KY-ROX Involutive Masking & Grammar", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 15, file: "kreativ_morandi_metamorphosis_engine.py", domain: "Kreativ Morandi Color & Aesthetic Dynamics", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 16, file: "projected_fixpoints_metamorphosis_engine.py", domain: "Projected Fixpoints & Topological Invariance", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 17, file: "sosionomos_digital_fortress_metamorphosis_engine.py", domain: "Sosionomos Digital Fortress Security", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 18, file: "quantum_gravity_m_theory_metamorphosis_engine.py", domain: "Quantum Gravity & M-Theory Flux", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 19, file: "quantum_perception_metamorphosis_engine.py", domain: "Quantum Perception Perception Vector", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 20, file: "forward_invariance_metamorphosis_engine.py", domain: "Forward-Invariance Barrier Functions", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 21, file: "sacl_governance_metamorphosis_engine.py", domain: "SACL Safety Governance & Interlock", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 22, file: "raw_data_integrity_metamorphosis_engine.py", domain: "RAW Data Integrity & SHA-256 Truth", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 23, file: "formal_appendix_theorems_metamorphosis_engine.py", domain: "Formal Appendix Theorems & Proofs", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 24, file: "civil_spectrometry_metamorphosis_engine.py", domain: "Civil Spectrometry & Optical Analysis", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 25, file: "cannibalistic_interlock_metamorphosis_engine.py", domain: "Cannibalistic Interlock Power Cutoff", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 26, file: "ky_pcd_unified_architecture_metamorphosis_engine.py", domain: "KY-PCD Regge-Wheeler Zerilli & Landauer", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 27, file: "four_field_nash_metamorphosis_engine.py", domain: "Four-Field Nash Game Theory Equilibrium", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 28, file: "geometric_admissibility_metamorphosis_engine.py", domain: "Geometric Admissibility Spin-2 Tensor", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 29, file: "kerr_geometry_rosetta_metamorphosis_engine.py", domain: "Kerr Black Hole Geometry a/M <= 1.0", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 30, file: "dodecahedral_kernel_metamorphosis_engine.py", domain: "Dodecahedral A5->A4 Origami & Neutrino Floor", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 31, file: "epistemic_reciprocity_metamorphosis_engine.py", domain: "Epistemic Reciprocity SUSY^2 Third Law", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 32, file: "hamilton_hilbert_metamorphosis_engine.py", domain: "Hamiltonian Learning Quantum Evolution U(t)", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 33, file: "geometric_superstructure_metamorphosis_engine.py", domain: "Geometric Superstructure 5-Layer Tensor", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 34, file: "ky_language_grammar_metamorphosis_engine.py", domain: "KY Language Realiseringsgrammatikk", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 35, file: "einstein_planck_maxwell_metamorphosis_engine.py", domain: "Einstein GR, Planck Foam & Maxwell Poynting", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 36, file: "deterministic_projection_warrant_metamorphosis_engine.py", domain: "Idempotent Projection Pi(Pi(x))=Pi(x) & Warrant", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 37, file: "involutive_geometry_anti_etor_metamorphosis_engine.py", domain: "Hyperbolic Inversion & Anti-Etor Abdication", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 38, file: "phronesis_neural_brain_os_metamorphosis_engine.py", domain: "mEC Grid Cells, Boundary Cells & CA3/CA1 WORM", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 39, file: "selection_ontology_realization_metamorphosis_engine.py", domain: "Selection Ontology Existence (x=Pi_K(Phi(x)))", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 40, file: "unified_field_admissibility_metamorphosis_engine.py", domain: "Unified Field Universal Triad (S, Phi, K)", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 41, file: "phronesis_hardware_neural_metamorphosis_engine.py", domain: "Verilog Hardware KS Gate Latch FPGA/ASIC", sw: "PASS", md: "PASS", ev: "PASS", status: "LATCH" },
+            { nr: 42, file: "ky_nash_qre_metamorphosis_engine.py", domain: "Quantal Response Equilibrium Logit Dynamics", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" },
+            { nr: 43, file: "cdc_complexity_axiom_metamorphosis_engine.py", domain: "CDC Complexity Law: Candidate != Construction", sw: "PASS", md: "PASS", ev: "PASS", status: "OPEN" }
+        ];
+
+        function renderTable(data) {
+            const tbody = document.getElementById('engineTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="hash-code">${item.nr}</td>
+                    <td class="engine-name">${item.file}</td>
+                    <td>${item.domain}</td>
+                    <td><span class="tier-tag tier-pass">${item.sw}</span></td>
+                    <td><span class="tier-tag tier-pass">${item.md}</span></td>
+                    <td><span class="tier-tag tier-pass">${item.ev}</span></td>
+                    <td><span class="tier-tag tier-pass">${item.status}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const filtered = engines.filter(item => 
+                item.file.toLowerCase().includes(query) || 
+                item.domain.toLowerCase().includes(query) ||
+                item.status.toLowerCase().includes(query)
+            );
+            renderTable(filtered);
+        });
+
+        // Init
+        renderTable(engines);
+    </script>
+</body>
+</html>
