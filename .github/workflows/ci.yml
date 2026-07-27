@@ -1,0 +1,41 @@
+name: Biomimetic Nitrogenase CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install numpy scipy
+
+    - name: Run Biomimetic Realization Engine (femos_quantum_biomimetic_engine.py)
+      run: |
+        python femos_quantum_biomimetic_engine.py
+
+    - name: Run Spor 1 (pcet_mossbauer_quantum_chemistry.py)
+      run: |
+        python pcet_mossbauer_quantum_chemistry.py
+
+    - name: Run Spor 2 (qsa_gain_scheduler_control.py)
+      run: |
+        python qsa_gain_scheduler_control.py
+
+    - name: Verify HTML Workbench Integrity
+      run: |
+        test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
