@@ -1,142 +1,107 @@
-#!/usr/bin/env python3
-"""
-ky_parser.py
-============
-KY-Grammar State Realization Parser & Gate Verifier (v1.0)
-
-Lifecycle State Transition Chain:
-  ○ (RAW) -> ◇ (BOUND) -> □ (VERIFIED) -> O (STAGED) -> • (COMMITTED)
-
-Grammar Syntax & Rules:
-  1. Enclosure Rule: Core state chain must be enclosed in parentheses '(...)'
-  2. Audit Prefix: '☑' indicates verified audit prefix.
-  3. Gate Claim Marks (at end):
-       '►' ==> Claims OPEN
-       '⏸' ==> Claims HOLD
-       'X' ==> Claims KILL
-  4. Inadmissibility Mark:
-       '∉K' ==> Marks state sequence as outside admissible set K (Forces KILL).
-  5. Audit Law:
-       If sequence reaches COMMITTED '•', it MUST possess both witness hash '#'
-       and attestation mark '!' before the gate claim.
-  6. Gate Mismatch Law:
-       Claimed gate ('►', '⏸', 'X') MUST match computed gate. Mismatch forces KILL.
-"""
-
 import re
+from dataclasses import dataclass, field
 from typing import List, Optional
 
-class KYParseResult:
-    def __init__(self, syntax: str = 'valid', type_status: str = 'valid', 
-                 admissibility: str = 'open', gate: str = 'OPEN', reasons: Optional[List[str]] = None):
-        self.syntax = syntax
-        self.type_status = type_status
-        self.admissibility = admissibility
-        self.gate = gate
-        self.reasons = reasons if reasons is not None else []
+@dataclass
+class EvalResult:
+    syntax: str
+    type_status: str
+    admissibility: str
+    gate: str
+    reasons: List[str] = field(default_factory=list)
 
 class KYParser:
-    VALID_STATES = ['○', '◇', '□', 'O', '•']
-    STATE_INDEX = {s: i for i, s in enumerate(VALID_STATES)}
+    """
+    K-C3 Protocol Directorate: Formal KY v1.0 Parser.
+    Implements strict structural, temporal, and gating checks.
+    """
+    NODES = {'○': 0, '◇': 1, '□': 2, 'Δ': 3, 'O': 4, '•': 5}
+    FLOWS = ['→', '~', '⇒']
+    VALIDITY = ['∈K', '∉K', '≠']
+    AUDIT = ['#', '!']
+    GATES = {'►': 'OPEN', '⏸': 'HOLD', 'X': 'KILL'}
+    
+    def __init__(self):
+        # Regex to tokenize the strict EBNF structure
+        self.expr_pattern = re.compile(
+            r'^(?P<val_prefix>☑)?\((?P<chain>[○◇□ΔO•→~⇒]+)\)(?P<val_suffix>∈K|∉K|≠)?(?P<audit>[#!τ]*)\s*(?P<gate>[►⏸X])$'
+        )
 
-    def evaluate(self, expr: str) -> KYParseResult:
-        expr = expr.strip()
-        reasons = []
-
-        # 1. Syntax Check: Check for parenthesized chain '(...)'
-        chain_match = re.search(r'\(([^)]+)\)', expr)
-        if not chain_match:
-            return KYParseResult(
-                syntax='invalid',
-                type_status='invalid',
-                admissibility='inadmissible',
-                gate='KILL',
-                reasons=['Syntax Error: Missing parentheses enclosing state chain']
-            )
-
-        chain_str = chain_match.group(1).strip()
+    def evaluate(self, expression: str) -> EvalResult:
+        expression = expression.strip()
+        match = self.expr_pattern.match(expression)
         
-        # 2. Extract Claimed Gate Mark
-        claimed_gate_symbol = None
-        if expr.endswith('►'):
-            claimed_gate_symbol = '►'
-        elif expr.endswith('⏸'):
-            claimed_gate_symbol = '⏸'
-        elif expr.endswith('X'):
-            claimed_gate_symbol = 'X'
+        if not match:
+            return EvalResult('invalid', 'invalid', 'kill', 'KILL', ['Syntax Error: Does not match KY EBNF format.'])
 
-        # 3. Check for Inadmissible Mark '∉K'
-        is_inadmissible = '∉K' in expr
+        parts = match.groupdict()
+        reasons = []
+        
+        # 1. Type & Chain Check
+        chain = parts['chain']
+        type_valid, chain_reasons = self._check_chain_types(chain)
+        reasons.extend(chain_reasons)
+        
+        # 2. Admissibility & Audit Check
+        is_admissible = True
+        calc_gate = 'OPEN'
+        
+        if parts['val_suffix'] == '∉K':
+            is_admissible = False
+            reasons.append('Inadmissible mark (∉K) forces KILL.')
+            calc_gate = 'KILL'
+            
+        elif parts['val_suffix'] == '≠':
+            is_admissible = False
+            reasons.append('Structural breakdown (≠) forces KILL.')
+            calc_gate = 'KILL'
 
-        # 4. Check for Audit Marks ('#' and '!')
-        has_hash = '#' in expr
-        has_excl = '!' in expr
-        has_audit_prefix = '☑' in expr
+        # Audit Law
+        if ('•' in chain or '⇒' in chain) and not parts['audit']:
+            is_admissible = False
+            reasons.append('Audit Law Violation: Irreversible node/flow lacks witness (# or !).')
+            calc_gate = 'KILL'
 
-        # 5. Parse State Chain Transitions (split by '→' or '~')
-        # Replace '~' with '→' for transition splitting
-        normalized_chain = chain_str.replace('~', '→')
-        raw_nodes = [s.strip() for s in normalized_chain.split('→') if s.strip()]
+        # 3. Consolidate logic for HOLD vs OPEN
+        if not type_valid and calc_gate != 'KILL':
+            calc_gate = 'KILL'
+            is_admissible = False
+            
+        if calc_gate == 'OPEN' and ('~' in chain or parts['gate'] == '⏸'):
+            # Allow explicit HOLDs if the chain is otherwise valid but paused
+            calc_gate = 'HOLD'
+            if parts['gate'] == '⏸':
+                reasons.append('Expression explicitly marked for HOLD.')
 
-        type_status = 'valid'
-        # Check transitions
-        for i in range(len(raw_nodes) - 1):
-            curr_s = raw_nodes[i]
-            next_s = raw_nodes[i+1]
-
-            if curr_s not in self.STATE_INDEX or next_s not in self.STATE_INDEX:
-                type_status = 'invalid'
-                reasons.append(f"Type Error: Unknown state symbol '{curr_s}' or '{next_s}'")
-                break
-
-            curr_idx = self.STATE_INDEX[curr_s]
-            next_idx = self.STATE_INDEX[next_s]
-
-            # Transition rule: Step size must be 1 (e.g. ○->◇) or same level
-            if next_idx - curr_idx > 1 or next_idx < curr_idx:
-                type_status = 'invalid'
-                reasons.append(f"Type Error: Invalid shortcut transition '{curr_s}' -> '{next_s}'")
-                break
-
-        # Compute Expected Gate
-        reaches_committed = ('•' in raw_nodes)
-        is_hold = ('~' in chain_str or claimed_gate_symbol == '⏸') and not reaches_committed
-
-        # Apply Inadmissible Overrides
-        if is_inadmissible:
-            reasons.append("Inadmissible mark ∉K present")
-
-        # Apply Audit Law on Committed State
-        audit_law_violation = False
-        if reaches_committed and not (has_hash and has_excl):
-            audit_law_violation = True
-            reasons.append("Audit Law Violation: Committed state '•' requires '#' and '!'")
-
-        # Determine Logical Gate
-        if type_status == 'invalid' or is_inadmissible or audit_law_violation:
-            computed_gate = 'KILL'
-        elif is_hold:
-            computed_gate = 'HOLD'
+        # 4. Gate Matching
+        declared_gate = self.GATES[parts['gate']]
+        if declared_gate != calc_gate:
+            reasons.append(f'Gate Mismatch: Evaluated to {calc_gate}, but declared as {declared_gate}.')
+            calc_gate = 'KILL' # Fail-closed on mismatch
         else:
-            computed_gate = 'OPEN'
+            reasons.append('Gate matches computed structural status.')
 
-        # Check Gate Mismatch (if claimed gate does not match computed gate)
-        if claimed_gate_symbol == '►' and computed_gate != 'OPEN':
-            reasons.append(f"Gate Mismatch: Claimed '►' (OPEN) but computed '{computed_gate}'")
-            computed_gate = 'KILL'
-        elif claimed_gate_symbol == '⏸' and computed_gate != 'HOLD':
-            reasons.append(f"Gate Mismatch: Claimed '⏸' (HOLD) but computed '{computed_gate}'")
-            computed_gate = 'KILL'
-        elif claimed_gate_symbol == 'X' and computed_gate != 'KILL':
-            reasons.append(f"Gate Mismatch: Claimed 'X' (KILL) but computed '{computed_gate}'")
-
-        admissibility = 'hold' if computed_gate == 'HOLD' else ('open' if computed_gate == 'OPEN' else 'inadmissible')
-        syntax = 'valid' if type_status == 'valid' else 'invalid'
-
-        return KYParseResult(
-            syntax=syntax,
-            type_status=type_status,
-            admissibility=admissibility,
-            gate=computed_gate,
+        return EvalResult(
+            syntax='valid',
+            type_status='valid' if type_valid else 'invalid',
+            admissibility='pass' if is_admissible and calc_gate == 'OPEN' else ('hold' if calc_gate == 'HOLD' else 'kill'),
+            gate=calc_gate,
             reasons=reasons
         )
+
+    def _check_chain_types(self, chain: str):
+        reasons = []
+        # Extract nodes (ignoring flows for the basic strict rank check)
+        nodes_in_chain = [char for char in chain if char in self.NODES]
+        
+        for i in range(len(nodes_in_chain) - 1):
+            curr_rank = self.NODES[nodes_in_chain[i]]
+            next_rank = self.NODES[nodes_in_chain[i+1]]
+            
+            if next_rank == curr_rank:
+                continue # Loop/Drift is type-safe
+            elif (curr_rank == 0 and next_rank == 5) or next_rank < curr_rank or (next_rank - curr_rank > 2):
+                reasons.append(f"Type Error: Illegal transition from {nodes_in_chain[i]} to {nodes_in_chain[i+1]}.")
+                return False, reasons
+                
+        return True, reasons
