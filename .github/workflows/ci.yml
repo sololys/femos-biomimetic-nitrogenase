@@ -48,6 +48,18 @@ jobs:
       run: |
         python h2v_twin.py
 
+    - name: Run Morph Integration Suite (femos_morph_integration_suite.py)
+      run: |
+        python femos_morph_integration_suite.py
+
+    - name: Run Classical APC Simulator (apc_simulator.py)
+      run: |
+        python apc_simulator.py
+
+    - name: Run Quantum APC Path Asymmetry Test (apc_qiskit_sim.py)
+      run: |
+        python apc_qiskit_sim.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
