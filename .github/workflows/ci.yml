@@ -80,6 +80,10 @@ jobs:
       run: |
         python omega_rosetta.py --once
 
+    - name: Run Arkitektens Nullpunkt Engine (arkitektens_nullpunkt_engine.py)
+      run: |
+        python arkitektens_nullpunkt_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
