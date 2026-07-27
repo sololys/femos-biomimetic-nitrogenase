@@ -108,6 +108,14 @@ jobs:
       run: |
         python iks_reversible_metamorphosis_engine.py
 
+    - name: Run Atlas Holomorphic Runtime (atlas_holomorphic.py)
+      run: |
+        python atlas_holomorphic.py
+
+    - name: Run Holomorphic Holographic Metamorphosis Engine (holomorphic_holographic_metamorphosis_engine.py)
+      run: |
+        python holomorphic_holographic_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
