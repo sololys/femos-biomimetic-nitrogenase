@@ -2,7 +2,7 @@
 """
 master_all_engines_sweep.py
 ===========================
-Total Verifikasjonssweep for alle 41 Metamorfose-motorer i systemet.
+Total Verifikasjonssweep for alle 42 Metamorfose-motorer i systemet.
 """
 
 import sys
@@ -11,7 +11,7 @@ import subprocess
 import time
 from typing import List, Tuple
 
-# Liste over alle 41 metamorfose-motorer som skal testet
+# Liste over alle 42 metamorfose-motorer som skal testet
 METAMORPHOSIS_ENGINES = [
     "femos_metamorphosis_engine.py",
     "gscx_battery_metamorphosis_engine.py",
@@ -53,12 +53,13 @@ METAMORPHOSIS_ENGINES = [
     "phronesis_neural_brain_os_metamorphosis_engine.py",
     "selection_ontology_realization_metamorphosis_engine.py",
     "unified_field_admissibility_metamorphosis_engine.py",
-    "phronesis_hardware_neural_metamorphosis_engine.py"
+    "phronesis_hardware_neural_metamorphosis_engine.py",
+    "ky_nash_qre_metamorphosis_engine.py"
 ]
 
 def main():
     print("=========================================================================================================")
-    print("=== MASTER METAMORFOSE-MOTORER VERIFIKASJONSSWEEP (41 INTEGRERTE MOTORER) ===")
+    print("=== MASTER METAMORFOSE-MOTORER VERIFIKASJONSSWEEP (42 INTEGRERTE MOTORER) ===")
     print("=========================================================================================================\n")
 
     base_dir = "/home/sololyset/01_OPEN"
@@ -88,7 +89,7 @@ def main():
         print(f"{idx:<3} | {engine_file:<54} | {t_elapsed:<7.3f}s | {status}")
 
     print("-" * 92)
-    print(f"\n[TOTAL VERIFIKASJONSSTATUS]: {'100% SUKSESS (ALLE 41 MOTORER PASSERTE)' if all_passed else 'FEIL I MOTORER'}\n")
+    print(f"\n[TOTAL VERIFIKASJONSSTATUS]: {'100% SUKSESS (ALLE 42 MOTORER PASSERTE)' if all_passed else 'FEIL I MOTORER'}\n")
 
 if __name__ == "__main__":
     main()
