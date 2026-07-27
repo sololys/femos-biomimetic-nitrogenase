@@ -36,6 +36,18 @@ jobs:
       run: |
         python qsa_gain_scheduler_control.py
 
+    - name: Run Fe-Mo Metamorphosis Engine (femos_metamorphosis_engine.py)
+      run: |
+        python femos_metamorphosis_engine.py
+
+    - name: Run Metaprotocol Transition Runtime (metamorphosis_runtime.py)
+      run: |
+        python metamorphosis_runtime.py
+
+    - name: Run H2-VESTA Digital Twin Simulator (h2v_twin.py)
+      run: |
+        python h2v_twin.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
