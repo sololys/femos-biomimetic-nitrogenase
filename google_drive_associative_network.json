@@ -1,0 +1,2957 @@
+{
+  "network_title": "Reismannpoint Observatorium Google Drive Associative Network",
+  "version": "v1.0",
+  "timestamp_iso": "2026-07-27T16:05:06Z",
+  "total_nodes": 43,
+  "total_edges": 369,
+  "graph_manifest_sha256": "f3069897daf914e2e003b3e8e8713357a62fb7d66d1526503ce0b5a2b5763407",
+  "nodes": {
+    "drive_node_01": {
+      "id": "drive_node_01",
+      "engine_file": "femos_metamorphosis_engine.py",
+      "domain_category": "BIO_CATALYSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "23f91759ef34668c51106b31ec9794e874c5c4a2c69553f1951e7a71074bffa8",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "BIO_CATALYSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_02": {
+      "id": "drive_node_02",
+      "engine_file": "gscx_battery_metamorphosis_engine.py",
+      "domain_category": "BIO_CATALYSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "3a3c194e2b206b76f925e80cb4edf488e5f2fcfd365b51d4e081a897815b2bd5",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "BIO_CATALYSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_03": {
+      "id": "drive_node_03",
+      "engine_file": "apc_g4_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "d289f55964799ada8c5fff17264bc7407bcc33680bc7845c28cf81b794cbe8fc",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_04": {
+      "id": "drive_node_04",
+      "engine_file": "qcs_omni_metamorphosis_engine.py",
+      "domain_category": "QUANTUM_GRAVITY",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "ce962f9360f58cac6ca470cc24fe6823a0a85beb4ba306182c464b338f0aa61a",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "QUANTUM_GRAVITY",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_05": {
+      "id": "drive_node_05",
+      "engine_file": "rosetta_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "5ca775d6739cdfe32f5e3f7c961787c6674523b2569d819461a1737e78fe0af9",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_06": {
+      "id": "drive_node_06",
+      "engine_file": "arkitektens_nullpunkt_engine.py",
+      "domain_category": "FOUNDATIONAL_AXIOMS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "0f4474993bafd91fb4f26fa72f28aa63a0400791a4e5b0569c488adfcf8bcb20",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "FOUNDATIONAL_AXIOMS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_07": {
+      "id": "drive_node_07",
+      "engine_file": "etor2_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "b39718fb37b6051bc7b598442d90a04063d3ea5b31a3fc6802384211154355b2",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_08": {
+      "id": "drive_node_08",
+      "engine_file": "omni_full_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "60778d1f3980c13cd7aa0d8f5280293b0fcba32b7ec16d8c367774ebe163ebc6",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_09": {
+      "id": "drive_node_09",
+      "engine_file": "iks_reversible_metamorphosis_engine.py",
+      "domain_category": "NEURAL_HARDWARE",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "2efb0b23ffadfd856a2225bc83241944028bb80d57877a683f5d47e1a8da1087",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "NEURAL_HARDWARE",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_10": {
+      "id": "drive_node_10",
+      "engine_file": "holomorphic_holographic_metamorphosis_engine.py",
+      "domain_category": "QUANTUM_GRAVITY",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "97a4e5eb30e293741e736f772ed23ba6720cff415e8121e71a36aab0967c72fc",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "QUANTUM_GRAVITY",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_11": {
+      "id": "drive_node_11",
+      "engine_file": "gko_os3_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "d85ae8ec3ff874f6ce67494eeeb371d625c074b54861552dc1333bdf72938fc5",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_12": {
+      "id": "drive_node_12",
+      "engine_file": "cpcab_hydrogen_control_metamorphosis_engine.py",
+      "domain_category": "BIO_CATALYSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "b72bf6625e862b6e0f91292b869f142f6ee355b11136ff27fcf4aea5ae599bd9",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "BIO_CATALYSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_13": {
+      "id": "drive_node_13",
+      "engine_file": "cvtk_capa_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "2b970e0de86890907daa30968721dcde105a01fc494bc17e556c263df82f60d1",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_14": {
+      "id": "drive_node_14",
+      "engine_file": "ky_rox_master_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "494ba5ed0090da5e9503960f69962b025bcb7c7399957fe31e4f6eb7e3cfee1f",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_15": {
+      "id": "drive_node_15",
+      "engine_file": "kreativ_morandi_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "0830f3cbf23f15aaba5bb50e580551bde67d6d96af4a7010acb017acb7f0f0fb",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_16": {
+      "id": "drive_node_16",
+      "engine_file": "projected_fixpoints_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "ecc0a9f6888a33fb8403fc98558cb2ee879da7e294aaeb0e8d846445c088f999",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_17": {
+      "id": "drive_node_17",
+      "engine_file": "sosionomos_digital_fortress_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "8e2a71bc3b066c9b80e26d7038854e9846c918762e278d1f1fe57b0f007d301e",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_18": {
+      "id": "drive_node_18",
+      "engine_file": "quantum_gravity_m_theory_metamorphosis_engine.py",
+      "domain_category": "QUANTUM_GRAVITY",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "13b1f76adc7083b29f0f69e48814c9ab36c4549d20e33bdc145018e69eb9160a",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "QUANTUM_GRAVITY",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_19": {
+      "id": "drive_node_19",
+      "engine_file": "quantum_perception_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "6c9f11d02f67f910ece3cc6e8437cd31c736c7cb02547a615ac2d8a2b1a954f0",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_20": {
+      "id": "drive_node_20",
+      "engine_file": "forward_invariance_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "15ae614c43ebec3bf29162a13f5a3f6bd2fb7ab158f0783324e6726599d5dbd5",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_21": {
+      "id": "drive_node_21",
+      "engine_file": "sacl_governance_metamorphosis_engine.py",
+      "domain_category": "GAME_THEORY_NASH",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "160fb9ab75de4dd3c9bd529af854f63fca4f9bbd9ec01fb6c52b1fd4a16cfd5d",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GAME_THEORY_NASH",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_22": {
+      "id": "drive_node_22",
+      "engine_file": "raw_data_integrity_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "4f3e2ba3b3ce3f8b57ead927e741e3674091ee25312bf6f688d957a00e63370b",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_23": {
+      "id": "drive_node_23",
+      "engine_file": "formal_appendix_theorems_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "d10f63380e5ef89b909e0598b6d719174a80bfc0c2a576cc7aaece2283892432",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_24": {
+      "id": "drive_node_24",
+      "engine_file": "civil_spectrometry_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "2539b256cdd96578ad29333738799cfad3be3e505a08f724969062f11d7157f6",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_25": {
+      "id": "drive_node_25",
+      "engine_file": "cannibalistic_interlock_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "9390963296c6b8fcd3457d4f55e3c42ba05d0926220a27d86573c6a789987b3c",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_26": {
+      "id": "drive_node_26",
+      "engine_file": "ky_pcd_unified_architecture_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "3ad51438cb5587a8b180ccab68e71f7f4b9d24ffbdded678705749e88c328a4d",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_27": {
+      "id": "drive_node_27",
+      "engine_file": "four_field_nash_metamorphosis_engine.py",
+      "domain_category": "GAME_THEORY_NASH",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "cdeebccacb4c8f2ba534e02c117080afe0e39e83ad24f0925dae06382be8095f",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GAME_THEORY_NASH",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_28": {
+      "id": "drive_node_28",
+      "engine_file": "geometric_admissibility_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "c2706cc26e868dbf628c7f1d2bb3df97c774ed861269f2c8a0b7b174a0154bab",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_29": {
+      "id": "drive_node_29",
+      "engine_file": "kerr_geometry_rosetta_metamorphosis_engine.py",
+      "domain_category": "QUANTUM_GRAVITY",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "91356670985dd39593ae7a4b7f49737bfd66d6f769c02ecd6679b32a1e2aa610",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "QUANTUM_GRAVITY",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_30": {
+      "id": "drive_node_30",
+      "engine_file": "dodecahedral_kernel_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "bc08f32944de7ba8ab8231813f579320238be5797f75cbddfe2c46184075f126",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_31": {
+      "id": "drive_node_31",
+      "engine_file": "epistemic_reciprocity_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "7eb917ad1fd4eb40a58683d5dccb8921e26d540a4b0ca75b4e8bbb51cc79b9ce",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_32": {
+      "id": "drive_node_32",
+      "engine_file": "hamilton_hilbert_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "abf5fb3f675f4ef31980939562f9912e71a3b283ef53ab6a6a0b0ebd68e21be3",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_33": {
+      "id": "drive_node_33",
+      "engine_file": "geometric_superstructure_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "080c8b7883c12bec068e161499df382ff3563b9f4ae0d0f8efa8f1ec8f517a5a",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_34": {
+      "id": "drive_node_34",
+      "engine_file": "ky_language_grammar_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "7dd371075431d91605d3f634d22ef65985eaf3d8f107c7da71fa245570104fd3",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_35": {
+      "id": "drive_node_35",
+      "engine_file": "einstein_planck_maxwell_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "986b5011ebb2700cbc30a2b7f199bf77c550020ba86eb524ce9b6a50619a109f",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_36": {
+      "id": "drive_node_36",
+      "engine_file": "deterministic_projection_warrant_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "1650f2a86854a0bc2952f76ae4fdf7884eb086875f6876a7020f6c0daa0caf49",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_37": {
+      "id": "drive_node_37",
+      "engine_file": "involutive_geometry_anti_etor_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "6cfedf5d7ebd0dbcb4e4362bcb3c0adbe6642bfff1a6dacb546ead60ca0c21f2",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_38": {
+      "id": "drive_node_38",
+      "engine_file": "phronesis_neural_brain_os_metamorphosis_engine.py",
+      "domain_category": "NEURAL_HARDWARE",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "3243e3540baa6ef8947572497a06ce7f07f2b0d87317d1453e20cb86831988b5",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "NEURAL_HARDWARE",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_39": {
+      "id": "drive_node_39",
+      "engine_file": "selection_ontology_realization_metamorphosis_engine.py",
+      "domain_category": "FOUNDATIONAL_AXIOMS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "2a16e27d1e7fe95f93b51d99443951c58be02a2a9beee000441e446a01b84292",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "FOUNDATIONAL_AXIOMS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_40": {
+      "id": "drive_node_40",
+      "engine_file": "unified_field_admissibility_metamorphosis_engine.py",
+      "domain_category": "GENERAL_METAMORPHOSIS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "3f6b37129d9d8d5a72e4a3d0a938638862c143aa62f7d4c4d1dd643b7d8d767f",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GENERAL_METAMORPHOSIS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_41": {
+      "id": "drive_node_41",
+      "engine_file": "phronesis_hardware_neural_metamorphosis_engine.py",
+      "domain_category": "NEURAL_HARDWARE",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "b56ef75f410a21631c4041ed961dc6742a8ec27a190f1423186ee7b1326bb2ce",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "NEURAL_HARDWARE",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_42": {
+      "id": "drive_node_42",
+      "engine_file": "ky_nash_qre_metamorphosis_engine.py",
+      "domain_category": "GAME_THEORY_NASH",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "153334ca0ab37320a328d3cfcd9cf64f24a48be1c238c9675743a019da0390d8",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "GAME_THEORY_NASH",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    },
+    "drive_node_43": {
+      "id": "drive_node_43",
+      "engine_file": "cdc_complexity_axiom_metamorphosis_engine.py",
+      "domain_category": "FOUNDATIONAL_AXIOMS",
+      "software_pass": true,
+      "model_pass": true,
+      "evidence_pass": true,
+      "sha256_warrant": "1a6ab4a2d8a5434fc171bbac37043669d96e223fb17e815ff21cad6068ce7038",
+      "gdrive_metadata": {
+        "mimeType": "application/x-python",
+        "appProperties": {
+          "associative_category": "FOUNDATIONAL_AXIOMS",
+          "3tier_verdict": "PASS_3TIER_VERIFIED",
+          "locus_level": "0"
+        }
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "drive_node_01",
+      "target": "drive_node_02",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_01",
+      "target": "drive_node_12",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_02",
+      "target": "drive_node_12",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_05",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_07",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_08",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_11",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_13",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_14",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_03",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_04",
+      "target": "drive_node_10",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_04",
+      "target": "drive_node_18",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_04",
+      "target": "drive_node_29",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_07",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_08",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_11",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_13",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_14",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_05",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_06",
+      "target": "drive_node_39",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_06",
+      "target": "drive_node_43",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_08",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_11",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_13",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_14",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_07",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_11",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_13",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_14",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_08",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_09",
+      "target": "drive_node_38",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_09",
+      "target": "drive_node_41",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_10",
+      "target": "drive_node_18",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_10",
+      "target": "drive_node_29",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_13",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_14",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_11",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_14",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_13",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_15",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_14",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_16",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_15",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_17",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_16",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_19",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_17",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_18",
+      "target": "drive_node_29",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_20",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_19",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_22",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_20",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_21",
+      "target": "drive_node_27",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_21",
+      "target": "drive_node_42",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_23",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_22",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_24",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_23",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_25",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_24",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_26",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_25",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_28",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_26",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_27",
+      "target": "drive_node_42",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_30",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_28",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_31",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_30",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_32",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_31",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_32",
+      "target": "drive_node_33",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_32",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_32",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_32",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_32",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_32",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_33",
+      "target": "drive_node_34",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_33",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_33",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_33",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_33",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_34",
+      "target": "drive_node_35",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_34",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_34",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_34",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_35",
+      "target": "drive_node_36",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_35",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_35",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_36",
+      "target": "drive_node_37",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_36",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_37",
+      "target": "drive_node_40",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_38",
+      "target": "drive_node_41",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    },
+    {
+      "source": "drive_node_39",
+      "target": "drive_node_43",
+      "association_weight": 1.0,
+      "relationship": "SYNAPTIC_ASSOCIATION"
+    }
+  ]
+}
