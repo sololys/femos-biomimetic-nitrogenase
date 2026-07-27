@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="no" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Involutive Transformer Î | Self-Inverse Operator P(P(X)) = X</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            900: '#0a0a0f',
+                            800: '#13131c',
+                            accent: '#00ff9d',
+                            accentHover: '#00cc7d'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['Courier New', 'Courier', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0f;
+            color: #e2e8f0;
+        }
+        .neon-border {
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2), inset 0 0 10px rgba(0, 255, 157, 0.1);
+            border: 1px solid rgba(0, 255, 157, 0.4);
+        }
+        .neon-text {
+            text-shadow: 0 0 8px rgba(0, 255, 157, 0.5);
+        }
+        textarea {
+            resize: none;
+            outline: none;
+        }
+        textarea:focus {
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4), inset 0 0 10px rgba(0, 255, 157, 0.2);
+            border-color: #00ff9d;
+        }
+    </style>
+</head>
+<body class="font-mono min-h-screen flex flex-col items-center p-6 md:p-12">
+
+    <!-- HEADER -->
+    <header class="w-full max-w-4xl text-center mb-10">
+        <h1 class="text-3xl md:text-5xl font-bold text-cyber-accent neon-text mb-4">Involutive Transformer Î</h1>
+        <p class="text-gray-400 text-sm md:text-base">System Inverse Operator: P(P(X)) = X | Reversibel Speil-Transformasjon</p>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="w-full max-w-4xl grid grid-cols-1 gap-8 relative">
+
+        <!-- INPUT SEKSJON -->
+        <div class="flex flex-col gap-2">
+            <label for="input-text" class="text-cyber-accent font-semibold tracking-widest">INPUT [X]</label>
+            <textarea id="input-text" class="w-full rows-5 bg-cyber-800 rounded-lg p-4 text-gray-100 neon-border transition-all duration-300" placeholder="Skriv inn tekst her (f.eks: System state is OPEN and 1 is HIGH)...">System state is OPEN and 1 is HIGH</textarea>
+        </div>
+
+        <!-- TRANSFORNER-KNAPP -->
+        <div class="flex justify-center items-center py-4">
+            <button onclick="applyTransformation()" class="group relative px-8 py-3 bg-cyber-800 text-cyber-accent font-bold uppercase tracking-wider rounded-lg neon-border hover:bg-cyber-accent hover:text-cyber-900 transition-all duration-300">
+                <div class="flex items-center gap-3">
+                    <svg class="group-hover:animate-spin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M240,56V48a8,8,0,0,0-8-8H184a8,8,0,0,0,0,16h21.4l-18.81,18.81a88,88,0,1,0,21.6,128,8,8,0,1,0-16-1.6,72,72,0,1,1-17.7-104.8L211.4,56Z"></path>
+                    </svg>
+                    <span>Kjør Operasjon Î</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- OUTPUT SEKSJON -->
+        <div class="flex flex-col gap-2">
+            <label for="output-text" class="text-cyber-accent font-semibold tracking-widest">OUTPUT [P(X)]</label>
+            <textarea id="output-text" readonly class="w-full rows-5 bg-cyber-800 rounded-lg p-4 text-gray-100 neon-border transition-all duration-300 cursor-pointer" placeholder="Resultatet vil dukke opp her... (Klikk for å kopiere til input)"></textarea>
+        </div>
+
+        <!-- LOGIKK FORKLARING -->
+        <div class="mt-8 bg-cyber-800 p-6 rounded-lg neon-border text-sm text-gray-400">
+            <h3 class="text-cyber-accent font-bold mb-2">Regler for Involusjon (Î):</h3>
+            <ul class="list-disc list-inside space-y-1">
+                <li><strong>Polart Bytte:</strong> TRUE/FALSE, 1/0, HIGH/LOW, ON/OFF, OPEN/CLOSED, EXPAND/CONTRACT byttes.</li>
+                <li><strong>Case Inversjon:</strong> Store bokstaver blir små, og små blir store.</li>
+                <li><strong>Ord-Reversering:</strong> Rekkefølgen på ord og mellomrom reverseres.</li>
+                <li><strong>Aksiom:</strong> Fordi P(P(X)) = X, vil et nytt klikk på output-feltet gjenopprette den opprinnelige inndataen eksakt.</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <script>
+        const POLAR_PAIRS = {
+            'TRUE': 'FALSE', 'FALSE': 'TRUE',
+            '1': '0', '0': '1',
+            'HIGH': 'LOW', 'LOW': 'HIGH',
+            'ON': 'OFF', 'OFF': 'ON',
+            'OPEN': 'CLOSED', 'CLOSED': 'OPEN',
+            'EXPAND': 'CONTRACT', 'CONTRACT': 'EXPAND'
+        };
+
+        const POLAR_WORDS = Object.keys(POLAR_PAIRS);
+        const POLAR_REGEX = new RegExp('\\b(' + POLAR_WORDS.join('|') + ')\\b', 'gi');
+
+        function applyTransformation() {
+            const input = document.getElementById('input-text').value;
+            if (!input) return;
+
+            // Steg 1: Polart bytte (med adaptiv casing-arv)
+            let step1 = input.replace(POLAR_REGEX, (match) => {
+                const targetWord = POLAR_PAIRS[match.toUpperCase()];
+                let result = '';
+                
+                for (let i = 0; i < targetWord.length; i++) {
+                    const sourceChar = i < match.length ? match[i] : match[match.length - 1];
+                    const isUpper = sourceChar === sourceChar.toUpperCase() && sourceChar !== sourceChar.toLowerCase();
+                    const isLower = sourceChar === sourceChar.toLowerCase() && sourceChar !== sourceChar.toUpperCase();
+
+                    if (isUpper) {
+                        result += targetWord[i].toUpperCase();
+                    } else if (isLower) {
+                        result += targetWord[i].toLowerCase();
+                    } else {
+                        result += targetWord[i];
+                    }
+                }
+                return result;
+            });
+
+            // Steg 2: Case Inversjon
+            let step2 = step1.split('').map(char => {
+                const isUpper = char === char.toUpperCase() && char !== char.toLowerCase();
+                const isLower = char === char.toLowerCase() && char !== char.toUpperCase();
+
+                if (isUpper) return char.toLowerCase();
+                if (isLower) return char.toUpperCase();
+                return char;
+            }).join('');
+
+            // Steg 3: Ord-reversering (bevarer whitespace)
+            let step3 = step2.split(/(\S+)/).reverse().join('');
+
+            document.getElementById('output-text').value = step3;
+        }
+
+        // Klikk på output kopierer tilbake til input for umiddelbar P(P(X)) = X test
+        document.getElementById('output-text').addEventListener('click', function() {
+            if (this.value) {
+                document.getElementById('input-text').value = this.value;
+                this.value = '';
+                applyTransformation();
+                
+                // Visuell feedback
+                const btn = document.querySelector('button');
+                btn.classList.add('bg-cyber-accent', 'text-cyber-900');
+                setTimeout(() => {
+                    btn.classList.remove('bg-cyber-accent', 'text-cyber-900');
+                }, 200);
+            }
+        });
+
+        // Initital transformering
+        applyTransformation();
+    </script>
+</body>
+</html>
