@@ -64,6 +64,10 @@ jobs:
       run: |
         python apc_g4_metamorphosis_engine.py
 
+    - name: Run QCS OMNI Metamorphosis Engine (qcs_omni_metamorphosis_engine.py)
+      run: |
+        python qcs_omni_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
