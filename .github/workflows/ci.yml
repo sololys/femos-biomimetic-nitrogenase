@@ -148,6 +148,14 @@ jobs:
       run: |
         python ky_rox_master_metamorphosis_engine.py
 
+    - name: Run Morandi M001 Core (morandi_m001_core.py)
+      run: |
+        python morandi_m001_core.py
+
+    - name: Run Kreativ-Core & Morandi Metamorphosis Engine (kreativ_morandi_metamorphosis_engine.py)
+      run: |
+        python kreativ_morandi_metamorphosis_engine.py
+
     - name: Verify HTML Workbench Integrity
       run: |
         test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
