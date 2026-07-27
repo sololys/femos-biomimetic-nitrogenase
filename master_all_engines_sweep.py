@@ -2,7 +2,7 @@
 """
 master_all_engines_sweep.py
 ===========================
-Total Verifikasjonssweep for alle 16 Metamorfose-motorer i systemet.
+Total Verifikasjonssweep for alle 17 Metamorfose-motorer i systemet.
 """
 
 import sys
@@ -11,7 +11,7 @@ import subprocess
 import time
 from typing import List, Tuple
 
-# Liste over alle 16 metamorfose-motorer som skal testet
+# Liste over alle 17 metamorfose-motorer som skal testet
 METAMORPHOSIS_ENGINES = [
     "femos_metamorphosis_engine.py",
     "gscx_battery_metamorphosis_engine.py",
@@ -28,19 +28,20 @@ METAMORPHOSIS_ENGINES = [
     "cvtk_capa_metamorphosis_engine.py",
     "ky_rox_master_metamorphosis_engine.py",
     "kreativ_morandi_metamorphosis_engine.py",
-    "projected_fixpoints_metamorphosis_engine.py"
+    "projected_fixpoints_metamorphosis_engine.py",
+    "sosionomos_digital_fortress_metamorphosis_engine.py"
 ]
 
 def main():
     print("=========================================================================================================")
-    print("=== MASTER METAMORFOSE-MOTORER VERIFIKASJONSSWEEP (16 INTEGRERTE MOTORER) ===")
+    print("=== MASTER METAMORFOSE-MOTORER VERIFIKASJONSSWEEP (17 INTEGRERTE MOTORER) ===")
     print("=========================================================================================================\n")
 
     base_dir = "/home/sololyset/01_OPEN"
     results = []
 
-    print(f"{'Nr':<3} | {'Metamorfose-motor Filnavn':<52} | {'Kjøretid':<8} | Status")
-    print("-" * 90)
+    print(f"{'Nr':<3} | {'Metamorfose-motor Filnavn':<54} | {'Kjøretid':<8} | Status")
+    print("-" * 92)
 
     all_passed = True
 
@@ -60,10 +61,10 @@ def main():
             all_passed = False
 
         results.append((idx, engine_file, t_elapsed, status))
-        print(f"{idx:<3} | {engine_file:<52} | {t_elapsed:<7.3f}s | {status}")
+        print(f"{idx:<3} | {engine_file:<54} | {t_elapsed:<7.3f}s | {status}")
 
-    print("-" * 90)
-    print(f"\n[TOTAL VERIFIKASJONSSTATUS]: {'100% SUKSESS (ALLE 16 MOTORER PASSERTE)' if all_passed else 'FEIL I MOTORER'}\n")
+    print("-" * 92)
+    print(f"\n[TOTAL VERIFIKASJONSSTATUS]: {'100% SUKSESS (ALLE 17 MOTORER PASSERTE)' if all_passed else 'FEIL I MOTORER'}\n")
 
 if __name__ == "__main__":
     main()
