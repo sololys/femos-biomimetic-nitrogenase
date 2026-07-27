@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biomimetic Fe-Mo-S Nitrogenase & Quantum Realization Workbench</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0c10;
+      --bg-card: rgba(18, 22, 32, 0.75);
+      --bg-card-hover: rgba(26, 32, 48, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.3);
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
+        radial-gradient(at 90% 90%, rgba(168, 85, 247, 0.08) 0px, transparent 50%);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 2rem;
+    }
+
+    header {
+      max-width: 1300px;
+      margin: 0 auto 2rem auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-title h1 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .badge-status {
+      padding: 0.4rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-status::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .main-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group label span.val {
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      background: rgba(10, 12, 16, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    select:focus, input[type="text"]:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .preset-btn-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .btn-preset {
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .btn-preset:hover {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-cyan);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .dashboard-layout {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 1.5rem;
+    }
+
+    .verdict-banner {
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .verdict-banner.OPEN {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--accent-emerald);
+    }
+
+    .verdict-banner.HOLD {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--accent-amber);
+    }
+
+    .verdict-banner.KILL {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(244, 63, 94, 0.05));
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: var(--accent-rose);
+    }
+
+    .energy-metric {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .gate-pipeline-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gate-node {
+      padding: 1rem;
+      background: rgba(10, 12, 16, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gate-node::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--text-muted);
+    }
+
+    .gate-node.PASS::before { background: var(--accent-emerald); }
+    .gate-node.HOLD::before { background: var(--accent-amber); }
+    .gate-node.KILL::before { background: var(--accent-rose); }
+    .gate-node.NO_MUTATION::before { background: var(--accent-cyan); }
+
+    .gate-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .gate-status {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0.2rem 0;
+    }
+
+    .gate-status.PASS { color: var(--accent-emerald); }
+    .gate-status.HOLD { color: var(--accent-amber); }
+    .gate-status.KILL { color: var(--accent-rose); }
+    .gate-status.NO_MUTATION { color: var(--accent-cyan); }
+
+    .gate-desc {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      line-height: 1.2;
+    }
+
+    .canvas-card {
+      position: relative;
+      height: 240px;
+      width: 100%;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+
+    .worm-hash-box {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-purple);
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">Fe</div>
+      <div class="brand-title">
+        <h1>Fe-Mo-S Nitrogenase Realization Workbench</h1>
+        <p>Biomimetic Quantum Control & Fail-Closed Gate Evaluator (v1.0)</p>
+      </div>
+    </div>
+    <div class="badge-status">FASE-SPEIL / ATLAS LIVE</div>
+  </header>
+
+  <div class="main-grid">
+    
+    <!-- Left Column: Controls -->
+    <div class="card">
+      <div class="card-title">
+        <span>Kandidat Parametere</span>
+        <span style="font-size:0.75rem; color:var(--accent-cyan);">Φ_chem</span>
+      </div>
+
+      <div class="form-group">
+        <label>Kandidat Navn</label>
+        <input type="text" id="candName" value="FeMo_Bio_Active_01">
+      </div>
+
+      <div class="form-group">
+        <label>Kinetic Isotope Effect (KIE) <span class="val" id="lblKie">3.8</span></label>
+        <input type="range" id="inpKie" min="0.5" max="8.5" step="0.1" value="3.8">
+      </div>
+
+      <div class="form-group">
+        <label>Mössbauer Isomerskift Δδ (mm/s) <span class="val" id="lblDelta">0.01</span></label>
+        <input type="range" id="inpDelta" min="-0.20" max="0.20" step="0.01" value="0.01">
+      </div>
+
+      <div class="form-group">
+        <label>Faradaic Efficiency (FE) <span class="val" id="lblFe">92%</span></label>
+        <input type="range" id="inpFe" min="0.50" max="1.00" step="0.01" value="0.92">
+      </div>
+
+      <div class="form-group">
+        <label>Overpotensial ΔE (mV) <span class="val" id="lblE">140 mV</span></label>
+        <input type="range" id="inpE" min="20" max="250" step="5" value="140">
+      </div>
+
+      <div class="form-group">
+        <label>30s Perturbasjonsdrift <span class="val" id="lblRec">0.02</span></label>
+        <input type="range" id="inpRec" min="0.00" max="0.15" step="0.005" value="0.02">
+      </div>
+
+      <div class="form-group">
+        <label>Anaerob O2 Kontaminering (ppm) <span class="val" id="lblO2">0.10 ppm</span></label>
+        <input type="range" id="inpO2" min="0.0" max="2.0" step="0.05" value="0.10">
+      </div>
+
+      <div class="form-group">
+        <label>Antropocen NH3 Støy (ppm) <span class="val" id="lblNh3">0.00 ppm</span></label>
+        <input type="range" id="inpNh3" min="0.0" max="1.0" step="0.05" value="0.00">
+      </div>
+
+      <div class="preset-btn-group">
+        <button class="btn-preset" onclick="setPreset('kanonisk')">Kanonisk Ren</button>
+        <button class="btn-preset" onclick="setPreset('lowKie')">Lav KIE (Kill)</button>
+        <button class="btn-preset" onclick="setPreset('o2Contam')">O2 Lekkasje</button>
+        <button class="btn-preset" onclick="setPreset('nh3Noise')">NH3 Støy</button>
+      </div>
+    </div>
+
+    <!-- Right Column: Results & Visualization -->
+    <div class="dashboard-layout">
+      
+      <!-- Verdict Banner -->
+      <div class="verdict-banner OPEN" id="verdictBanner">
+        <span id="verdictText">DOM: OPEN</span>
+        <span class="energy-metric" id="energyText">Tapsenergi V = 0.0005</span>
+      </div>
+
+      <!-- Gate Pipeline Grid -->
+      <div class="card">
+        <div class="card-title">Portvokter Logg (Atlas 4-Layer Gates)</div>
+        <div class="gate-pipeline-list" id="gateList"></div>
+      </div>
+
+      <!-- Spectrum & QSA Chart -->
+      <div class="card">
+        <div class="card-title">Mössbauer Isomerskift & Fastpunkt-projeksjon</div>
+        <div class="canvas-card">
+          <canvas id="spectrumCanvas"></canvas>
+        </div>
+        <div class="worm-hash-box">
+          <strong>SHA-256 Vitneforsegling (WORM):</strong><br>
+          <span id="wormHash">Calculated on evaluate...</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const inputs = ['inpKie', 'inpDelta', 'inpFe', 'inpE', 'inpRec', 'inpO2', 'inpNh3'];
+    
+    inputs.forEach(id => {
+      document.getElementById(id).addEventListener('input', update);
+    });
+    document.getElementById('candName').addEventListener('input', update);
+
+    function update() {
+      const kie = parseFloat(document.getElementById('inpKie').value);
+      const delta = parseFloat(document.getElementById('inpDelta').value);
+      const fe = parseFloat(document.getElementById('inpFe').value);
+      const deltaE = parseFloat(document.getElementById('inpE').value);
+      const rec = parseFloat(document.getElementById('inpRec').value);
+      const o2 = parseFloat(document.getElementById('inpO2').value);
+      const nh3 = parseFloat(document.getElementById('inpNh3').value);
+
+      document.getElementById('lblKie').innerText = kie.toFixed(1);
+      document.getElementById('lblDelta').innerText = delta.toFixed(2);
+      document.getElementById('lblFe').innerText = Math.round(fe * 100) + '%';
+      document.getElementById('lblE').innerText = Math.round(deltaE) + ' mV';
+      document.getElementById('lblRec').innerText = rec.toFixed(3);
+      document.getElementById('lblO2').innerText = o2.toFixed(2) + ' ppm';
+      document.getElementById('lblNh3').innerText = nh3.toFixed(2) + ' ppm';
+
+      evaluate(kie, delta, fe, deltaE, rec, o2, nh3);
+    }
+
+    function evaluate(kie, delta, fe, deltaE, rec, o2, nh3) {
+      const trace = [];
+
+      // 1. Anaerobic & Noise
+      let gO2 = "PASS", rO2 = "Anaerob miljørenhet bekreftet";
+      if (o2 >= 0.5) { gO2 = "KILL"; rO2 = `O2-nivå for høyt (${o2.toFixed(2)} ppm >= 0.5 ppm)`; }
+      else if (nh3 > 0.0) { gO2 = "KILL"; rO2 = `NH3 støy detektert (${nh3.toFixed(2)} ppm)`; }
+      trace.push({ name: "ANAEROBIC_CIVIL", status: gO2, desc: rO2 });
+
+      // 2. KIE
+      let gKie = "PASS", rKie = "Godkjent PCET-mekanisme (2.0 <= KIE <= 7.0)";
+      if (kie < 2.0) { gKie = "KILL"; rKie = "KIE under PCET-terskel (< 2.0)"; }
+      else if (kie > 7.0) { gKie = "HOLD"; rKie = "Uforutsigbar kvantetunnelering (> 7.0)"; }
+      trace.push({ name: "KINETIC_ISOTOPE", status: gKie, desc: rKie });
+
+      // 3. Mössbauer
+      let gMoss = "NO_MUTATION", rMoss = "Isometric null zone (±0.04 mm/s)";
+      if (delta > 0.04 && delta <= 0.10) { gMoss = "PERIPHERAL_INDUCTION"; rMoss = "Moderat elektronunderskudd"; }
+      else if (delta > 0.10) { gMoss = "ASYMMETRIC_DONATION"; rMoss = "Sterkt elektronunderskudd"; }
+      else if (delta >= -0.10 && delta < -0.04) { gMoss = "APICAL_ELECTRON_DRAIN"; rMoss = "Moderat elektronoverføring"; }
+      else if (delta < -0.10) { gMoss = "GLOBAL_ELECTRON_DRAIN"; rMoss = "Ekstrem elektronoverføring"; }
+      trace.push({ name: "MOSSBAUER_ZONE", status: gMoss, desc: rMoss });
+
+      // 4. Performance
+      let gPerf = "PASS", rPerf = "Ytelse innenfor grenser";
+      if (deltaE < 100) { gPerf = "KILL"; rPerf = `Lave mV forbedring (${deltaE} mV < 100 mV)`; }
+      else if (fe < 0.85) { gPerf = "KILL"; rPerf = `Lav Faradaic Eff (${Math.round(fe*100)}% < 85%)`; }
+      trace.push({ name: "PERFORMANCE", status: gPerf, desc: rPerf });
+
+      // 5. Perturbation
+      let gPert = "PASS", rPert = "Perturbasjonsgjenoppretting ok";
+      if (rec > 0.05) { gPert = "KILL"; rPert = `Gjenoppretting feilet (${rec.toFixed(3)} > 0.05)`; }
+      trace.push({ name: "PERTURBATION", status: gPert, desc: rPert });
+
+      // Final Verdict Calculation
+      let finalVerdict = "OPEN";
+      if (trace.some(t => t.status === "KILL")) finalVerdict = "KILL";
+      else if (trace.some(t => t.status === "HOLD")) finalVerdict = "HOLD";
+      else if (gMoss !== "NO_MUTATION") finalVerdict = "HOLD";
+
+      // Realization Energy V
+      const eKie = Math.max(0, 2.0 - kie) + Math.max(0, kie - 7.0);
+      const eDelta = Math.abs(delta);
+      const eFe = Math.max(0, 0.85 - fe);
+      const eE = Math.max(0, 100 - deltaE) / 100;
+      const eRec = Math.max(0, rec - 0.05);
+      const eO2 = Math.max(0, o2 - 0.5);
+      const eNh3 = Math.max(0, nh3);
+
+      const V = 2.0*eKie**2 + 5.0*eDelta**2 + 3.0*eFe**2 + 2.0*eE**2 + 4.0*eRec**2 + 10.0*eO2**2 + 10.0*eNh3**2;
+
+      // Update UI
+      const banner = document.getElementById('verdictBanner');
+      banner.className = `verdict-banner ${finalVerdict}`;
+      document.getElementById('verdictText').innerText = `DOM: ${finalVerdict}`;
+      document.getElementById('energyText').innerText = `Tapsenergi V = ${V.toFixed(4)}`;
+
+      // Render Gate Cards
+      const list = document.getElementById('gateList');
+      list.innerHTML = trace.map(t => `
+        <div class="gate-node ${t.status}">
+          <div class="gate-name">${t.name}</div>
+          <div class="gate-status ${t.status}">${t.status}</div>
+          <div class="gate-desc">${t.desc}</div>
+        </div>
+      `).join('');
+
+      // Generate SHA-256 Hash
+      const candName = document.getElementById('candName').value;
+      const hashStr = `${candName}:${finalVerdict}:${V.toFixed(6)}:${new Date().toISOString()}`;
+      crypto.subtle.digest('SHA-256', new TextEncoder().encode(hashStr)).then(buf => {
+        const hashArray = Array.from(new Uint8Array(buf));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        document.getElementById('wormHash').innerText = `CD_SEAL_SHA256: ${hashHex}`;
+      });
+
+      drawSpectrum(delta);
+    }
+
+    function drawSpectrum(delta) {
+      const cvs = document.getElementById('spectrumCanvas');
+      const ctx = cvs.getContext('2d');
+      cvs.width = cvs.offsetWidth;
+      cvs.height = cvs.offsetHeight;
+
+      const w = cvs.width;
+      const h = cvs.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Background grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+
+      // Zero axis & isometric zone
+      const centerX = w / 2;
+      const scaleX = w / 0.5; // range [-0.25, 0.25]
+
+      // Null zone box (±0.04)
+      const nullW = 0.08 * scaleX;
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.1)';
+      ctx.fillRect(centerX - nullW/2, 0, nullW, h);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(centerX - nullW/2, 0); ctx.lineTo(centerX - nullW/2, h); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(centerX + nullW/2, 0); ctx.lineTo(centerX + nullW/2, h); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Baseline spectrum curve
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let px = 0; px < w; px++) {
+        const valX = (px - centerX) / scaleX;
+        // Lorentzian absorption dip around delta
+        const dip = 1.0 - 0.7 * (0.015**2 / ((valX - delta)**2 + 0.015**2));
+        const py = h * 0.2 + dip * h * 0.6;
+        if (px === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      // Peak Indicator
+      const peakX = centerX + delta * scaleX;
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(peakX, h * 0.8, 6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function setPreset(type) {
+      if (type === 'kanonisk') {
+        document.getElementById('inpKie').value = 3.8;
+        document.getElementById('inpDelta').value = 0.01;
+        document.getElementById('inpFe').value = 0.92;
+        document.getElementById('inpE').value = 140;
+        document.getElementById('inpRec').value = 0.02;
+        document.getElementById('inpO2').value = 0.10;
+        document.getElementById('inpNh3').value = 0.00;
+      } else if (type === 'lowKie') {
+        document.getElementById('inpKie').value = 1.4;
+      } else if (type === 'o2Contam') {
+        document.getElementById('inpO2').value = 1.20;
+      } else if (type === 'nh3Noise') {
+        document.getElementById('inpNh3').value = 0.40;
+      }
+      update();
+    }
+
+    // Initial render
+    window.addEventListener('resize', update);
+    update();
+  </script>
+</body>
+</html>
