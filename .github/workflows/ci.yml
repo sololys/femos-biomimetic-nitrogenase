@@ -1,4 +1,4 @@
-name: Biomimetic Nitrogenase CI/CD Pipeline
+name: Reismannpoint Observatorium 3-Tier CI/CD & Artifact Pipeline
 
 on:
   push:
@@ -7,27 +7,45 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  sweep-and-attest:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: ${{ matrix.python-version }}
 
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install numpy scipy
 
-    - name: Run Master Metamorphosis Engines Sweep (master_all_engines_sweep.py)
+    - name: Run Independent 3-Tier Attestation Sweep (43 Engines)
       run: |
         python master_all_engines_sweep.py
 
-    - name: Verify HTML Workbench Integrity
+    - name: Verify Antigravity SDK Agent & MCP Server
       run: |
-        test -f femos_quantum_biomimetic_workbench.html && echo "HTML Workbench verified!"
+        python antigravity_observatorium_agent.py
+        python mcp_observatorium_server.py --demo
+
+    - name: Export Sealed 3-Tier Attestation Report
+      run: |
+        python observatorium export
+
+    - name: Upload Attestation Artifacts (Report & Dashboard)
+      uses: actions/upload-artifact@v4
+      with:
+        name: observatorium-attestation-python${{ matrix.python-version }}
+        path: |
+          observatorium_3tier_report.json
+          observatorium_dashboard.html
+          observatorium_agentic_workflow.md
+        retention-days: 30
