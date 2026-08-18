@@ -2,10 +2,12 @@
 ### Deterministic Validation and Fail-Closed Control for Bio-Inorganic Catalyst & Hydrogen Pilot Systems
 
 [![CI Validation](https://github.com/sololys/femos-biomimetic-nitrogenase/actions/workflows/ci.yml/badge.svg)](https://github.com/sololys/femos-biomimetic-nitrogenase/actions/workflows/ci.yml)
+[![Portfolio Hub](https://img.shields.io/badge/Portfolio%20Hub-sololys%2Fsololys-blueviolet)](https://github.com/sololys/sololys)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--0431--6637-green.svg)](https://orcid.org/0009-0006-0431-6637)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
 
+* **Portfolio Hub:** [sololys / sololys](https://github.com/sololys/sololys)
 * **Author:** Marius Egerhei Torjusen (ORCID: [0009-0006-0431-6637](https://orcid.org/0009-0006-0431-6637))
 * **Entity:** ReismannPoint Systems AS // Kreativ Systems ([kreativ-systems.org](https://kreativ-systems.org/))
 * **Target Audience:** Universitetet i Oslo (UiO), SINTEF Industry, NTNU, and Industrial Process Partners
