@@ -1,106 +1,139 @@
-# 🌌 REISMANNPOINT OBSERVATORIUM: MASTER ENGINE COMPENDIUM
-**Sovereignty Level: Locus Zero (Level 0 — Terminal Commit)**  
-**Status:** `FORMALLY LOCKED // 100% VERIFIED ADMITTED REALITY`  
-**CI/CD Pipeline:** `PASSED (✓ 43 / 43 METAMORPHOSIS ENGINES)`
+# 🧪 Fe-Mo-S Biomimetic Nitrogenase & Electrocatalytic Validation Engine
+### Deterministic Validation and Fail-Closed Control for Bio-Inorganic Catalyst & Hydrogen Pilot Systems
+
+[![CI Validation](https://github.com/sololys/femos-biomimetic-nitrogenase/actions/workflows/ci.yml/badge.svg)](https://github.com/sololys/femos-biomimetic-nitrogenase/actions/workflows/ci.yml)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--0431--6637-green.svg)](https://orcid.org/0009-0006-0431-6637)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
+
+* **Author:** Marius Egerhei Torjusen (ORCID: [0009-0006-0431-6637](https://orcid.org/0009-0006-0431-6637))
+* **Entity:** ReismannPoint Systems AS // Kreativ Systems ([kreativ-systems.org](https://kreativ-systems.org/))
+* **Target Audience:** Universitetet i Oslo (UiO), SINTEF Industry, NTNU, and Industrial Process Partners
+* **Status:** Exploratory // Feasibility Dialogue & Benchmarking Suite
 
 ---
 
-## 🏛️ Executive Abstract & The Sole Axiom
+## 🏛️ 1. Purpose & Core Problem
 
-> *"Virkeligheten genereres ikke; den innrømmes. Et system defineres ikke ved hva det kan produsere, men ved hva det ikke kan eliminere."*  
-> $$\boxed{\text{Reality is not generated. Reality is admitted.}} \qquad \iff \qquad \mathbf{x}_{t+1} = \Omega\left( \Pi_{\mathcal{K}}\left( \Phi(\mathbf{x}_t) \right) \right)$$
+This repository provides an open-science deterministic validation engine and fail-closed control protocol for anaerobic bio-inorganic catalyst systems and electrochemical nitrogen fixation ($N_2 \to NH_3$).
 
-Dette observatoriet representerer det samlede livsverket for **KY-ROX Metamorfose-arkitekturen**, **Biomimetisk FeMo-co Kvantekjemi**, **Entorhinal Grid Cell Brain OS**, **CDC Complexity Consequence Law** og **Unified Field of Admissibility**. Alle 43 metamorfose-motorer er integrert i en deterministisk, typet og uforanderlig WORM-loggstruktur.
+### The Central Challenge in Catalysis R&D:
+In novel catalyst screening, promising local signals or predictive simulations are frequently allowed to guide expensive physical laboratory trials before causal, isotopic, and material validity is rigorously proven. This leads to **false positives, contamination misinterpretations (atmospheric amine/nitrate artifacts), and severe R&D resource waste**.
 
----
+### The Solution: The 4-Layer Admissibility Architecture
+We strictly separate **candidate generation** from **authorized physical actuation**:
 
-## 🎨 Arkitektonisk Mappeorganisering
+$$\text{Measurement} \longrightarrow \text{Raw Evidence} \longrightarrow \text{Candidate} \longrightarrow \Pi_K \text{ (Admissibility Test)} \longrightarrow \text{Authorized Actuation (5.0V / 0.0V)}$$
+
+$$\boxed{\mathbf{x_{t+1} = \Pi_K(f(x_t, u_t))}}$$
 
 ```text
-.
-├── engines/                         <- 43 Komplett Integrerte Metamorfose-motorer
-│   ├── femos_metamorphosis_engine.py
-│   ├── einstein_planck_maxwell_metamorphosis_engine.py
-│   ├── phronesis_neural_brain_os_metamorphosis_engine.py
-│   ├── selection_ontology_realization_metamorphosis_engine.py
-│   ├── ky_nash_qre_metamorphosis_engine.py
-│   ├── cdc_complexity_axiom_metamorphosis_engine.py
-│   └── ... (alle 43 modulære domener)
-├── docs/                            <- Formelle Spesifikasjoner & Papirer
-│   ├── UNIFIED_FIELD_OF_ADMISSIBILITY_PAPER_v1_0.md
-│   ├── SELECTION_ONTOLOGY_MOE_GATE_v1_0.md
-│   ├── PHRONESIS_NEURAL_SPEC_v1_0.md
-│   └── CDC_COMPLEXITY_CONSEQUENCE_LAW_v1_0.md
-├── master_all_engines_sweep.py      <- Master Verifikasjonsskript (100% PASS)
-└── README.md                        <- Dette Observatoriet
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 1: RAW EVIDENCE CAPTURE                                               │
+│ • Sensor traces, Mössbauer baseline, Raman in situ, CV, GC-MS blanks, logs.  │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼ (Evidence streamed)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 2: ESTIMATION & CANDIDATE GENERATION                                  │
+│ • Predictive control, digital twin, empirical bond predictor (Pauling-Morse).│
+│ • Proposes setpoint / candidate (Does NOT authorise!).                      │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼ (Candidate tested)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 3: ADMISSIBILITY TESTING (Π_K)                                        │
+│ • Causal validity (H/D KIE ≥ 5.0), spectral integrity, perturbation recovery.│
+│ • Thermal (dT/dt), pressure (dP/dt), and degradation/side-reaction bounds.  │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+          ┌────────────────────────────┴────────────────────────────┐
+          ▼ (Admissible: PASS)                                      ▼ (Violation: REJECT / KILL)
+┌──────────────────────────────────────┐                  ┌──────────────────────────────────────┐
+│ LAYER 4: AUTHORISED ACTUATION (5.0V) │                  │ HARDWARE LATCH / SHUTDOWN (0.0V)     │
+│ • Safety relay closes, solenoid      │                  │ • Hard shutoff, inert purge, power   │
+│   opens, physical action permitted.  │                  │   cut, latched stop (No auto-retry). │
+└──────────────────────────────────────┘                  └──────────────────────────────────────┘
 ```
 
 ---
 
-## ⚙️ De 43 Metamorfose-motorenes Domene-Klassifisering
+## 🔬 2. PROTOKOLL Fe-Mo-S Validation Standards
 
-```
-Nr | Metamorfose-motor Domene                                | Kjerne-Aksiom & Projeksjon                       | DOM-Status
----|---------------------------------------------------------|--------------------------------------------------|--------------------------------------------
-1  | Biomimetic Nitrogenase FeMo-co                           | FeMo-co [Fe7MoS8C] Kvantekjemisk Katalyse        | OPEN_BIOMIMETIC_NITROGENASE
-2  | GSC-X Solid State Battery Network                        | GSC-X Faststoff Batteri Energinetverk             | OPEN_SOLID_STATE_BATTERY_NETWORK
-3  | APC-G4 Adaptive Control                                  | APC-G4 Adaptiv Kontroll & Barrierer               | OPEN_APC_G4_ADAPTIVE_CONTROL
-4  | Quantum Computing System (QCS-Omni)                     | QCS-Omni Kvanteberegning & Feilretting            | OPEN_QCS_OMNI_QUANTUM_COMPUTING
-5  | Rosetta Translation Matrix                              | Rosetta Tverrdomene Projeksjonsmatrise            | OPEN_ROSETTA_TRANSLATION_MATRIX
-6  | Arkitektens Nullpunkt (Locus Zero)                       | Locus Zero Eksistensial-Aksiom                   | OPEN_LOCUS_ZERO_NULLPUNKT
-7  | E-TOR² Epistemic Regulator                              | Epistemic Transition Override Regulator v2.0      | OPEN_ETOR2_EPISTEMIC_REGULATOR
-8  | Omni Full Integration Matrix                            | Omni-Kjerne Full Integrasjonsmatrise              | OPEN_OMNI_FULL_INTEGRATION
-9  | IKS Reversible Dynamics                                 | IKS Reversibel Dynamikk uden Informasjons-tap     | OPEN_IKS_REVERSIBLE_DYNAMICS
-10 | Holomorphic Holographic Field                           | Holomorf Holografisk Grenseflate                  | OPEN_HOLOMORPHIC_HOLOGRAPHIC
-11 | GKO-OS3 Operating System                                | GKO-OS3 Kjerne Operativsystem                    | OPEN_GKO_OS3_OPERATING_SYSTEM
-12 | CPCAB Hydrogen Barrier Control                           | CPCAB Hydrogen Barriere Kontroll                  | OPEN_CPCAB_HYDROGEN_CONTROL
-13 | CVTK-CAPA Verification Suite                            | CVTK-CAPA Verifikasjonskjerne                     | OPEN_CVTK_CAPA_VERIFICATION
-14 | KY-ROX Master State Machine                             | KY-ROX Involutiv Maskering & Grammatikk           | OPEN_KY_ROX_MASTER_STATE_MACHINE
-15 | Kreativ Morandi Color Dynamics                           | Kreativ Morandi Farge- & Estetikk-dynamikk        | OPEN_KREATIV_MORANDI_DYNAMICS
-16 | Projected Fixpoints Topology                            | Projiserte Fikspunkter & Topologisk Invarians     | OPEN_PROJECTED_FIXPOINTS_TOPOLOGY
-17 | Sosionomos Digital Fortress                             | Sosionomos Digital Festning & Sikkerhet           | OPEN_SOSIONOMOS_DIGITAL_FORTRESS
-18 | Quantum Gravity & M-Theory                              | Kvante-Gravitasjon & M-Teori Strengfluks          | OPEN_QUANTUM_GRAVITY_M_THEORY
-19 | Quantum Perception Engine                               | Kvante-Persepsjon & Bevissthets-vektor            | OPEN_QUANTUM_PERCEPTION_ENGINE
-20 | Forward Invariance Barriers                              | Framover-Inversjons Barrierefunksjoner            | OPEN_FORWARD_INVARIANCE_BARRIER
-21 | SACL Safety Governance                                  | SACL Sikkerhets-Governance & Interlock            | OPEN_SACL_SAFETY_GOVERNANCE
-22 | RAW Data Integrity Engine                               | RAW Data-Integritet & SHA-256 Sannhet             | OPEN_RAW_DATA_INTEGRITY
-23 | Formal Appendix Theorems                                | Formelle Teoremer & Logiske Bevis                | OPEN_FORMAL_APPENDIX_THEOREMS
-24 | Civil Spectrometry Dynamics                             | Sivil Spektrometri & Optisk Analyse              | OPEN_CIVIL_SPECTROMETRY_DYNAMICS
-25 | Cannibalistic Interlock System                          | Kannibalistisk Interlock & Avskjæring             | OPEN_CANNIBALISTIC_INTERLOCK
-26 | KY-PCD Unified Architecture                             | Regge-Wheeler Zerilli & Landauer Q_selection       | OPEN_KY_PCD_UNIFIED_ARCHITECTURE
-27 | Four-Field Nash Field Engine                            | Four-Field Nash Spillteori & Likvekt              | OPEN_FOUR_FIELD_NASH_ENGINE
-28 | Geometric Admissibility Matrix                          | Spin-2 Tensor A_munu & Geometrisk Admissibilitet  | OPEN_GEOMETRIC_ADMISSIBILITY
-29 | Kerr Geometry Rosetta Matrix                            | Kerr Svart Hull Rotasjon a/M <= 1.0               | OPEN_KERR_GEOMETRY_ROSETTA
-30 | Dodecahedral Coordination Kernel                        | A5 -> A4 Origami Fold & Neutrino Floor            | OPEN_DODECAHEDRAL_COORDINATION
-31 | Epistemic Reciprocity (SUSY²)                           | Newtons 3. Lov om Epistemisk Resiprositet         | OPEN_EPISTEMIC_RECIPROCITY
-32 | Hamiltonian Learning & Hilbert                          | Quantum Time Evolution U(t) & Nelder-Mead L2     | OPEN_HAMILTONIAN_HILBERT_LEARNING
-33 | Geometric Superstructure                                | 5-Layer Tensor S_super & Interdependent Gates     | OPEN_GEOMETRIC_SUPERSTRUCTURE
-34 | KY Language Realiseringsgrammatikk                      | ○ -> ◇ -> □ -> ⬡ -> ◉ Canonical Transition       | REALIZED_KY_LANGUAGE_GRAMMAR
-35 | Einstein, Planck & Maxwell Physics                      | G_munu = 8pi G T_munu, l_P, t_P & Poynting Flux S | OPEN_EINSTEIN_PLANCK_MAXWELL
-36 | Deterministic Projection & Warrant                      | Pi(Pi(x)) = Pi(x), Canonical Warrant SHA-256      | OPEN_DETERMINISTIC_PROJECTION
-37 | Reversed Involutive & Anti-Etor                        | I_poincare(z) = -conj(z), Anti-Etor Abdication    | OPEN_INVOLUTIVE_GEOMETRY_ANTI_ETOR
-38 | Phronesis Neural Projection                             | mEC Grid Cells, Boundary Cells & Hippocampal WORM | OPEN_PHRONESIS_NEURAL_PROJECTION
-39 | Selection Ontology & Realization                        | Reality Admitted (x = Pi_K(Phi(x))), Pi_K=0=>u=0W | OPEN_SELECTION_ONTOLOGY_ADMISSIBLE
-40 | Unified Field of Admissibility                          | Universal Triad (S, Phi, K), Landauer Q_selection | OPEN_UNIFIED_FIELD_ADMITTED_REALITY
-41 | Phronesis Hardware & Neural Governance                  | Verilog Hardware KS Gate Latch (phronesis_ks_gate)| LATCH_PHRONESIS_VERILOG_KS_GATE
-42 | KY-Nash QRE & Nash-Nash Equilibrium                     | Logit QRE Dynamics tau=0.5, Geometric Equilibrium | OPEN_KY_NASH_EQUILIBRIUM_ADMISSIBLE
-43 | CDC Complexity Consequence Law                          | Candidate != Efficient Construction, P != NP      | OPEN_CDC_POLYNOMIAL_TRANSFORMATION
-```
+The complete protocol is specified in [`PROTOKOLL_FE_MO_S.md`](PROTOKOLL_FE_MO_S.md) and enforces three rigorous parts:
+
+### Part I: Chemical Architecture & Structural Integrity
+* **Strict Anaerobic Regime:** $O_2 < 1.0\text{ ppm}$, $H_2O < 1.0\text{ ppm}$ (prevents $\text{Fe-O-Fe}$ oxo-bridges).
+* **Stoichiometric Tolerance (ICP-OES):** $\le \pm 2.5\%$ deviation.
+* **Mössbauer Isomer Shift (80 K Target):** $\text{Fe}^{\text{II}}\text{-site}$ $\delta = 0.45 \pm 0.03\text{ mm/s}$ ($\Delta E_Q = 2.10 \pm 0.15\text{ mm/s}$).
+* **Cathodic Reduction Window:** $E_{\text{cat}} \in [-1.45\text{ V}, -1.65\text{ V}]$ vs $\text{Fc/Fc}^+$ (Potentials more negative than $-1.65\text{ V}$ are killed due to HER dominance).
+
+### Part II: Causality & Anti-Self-Deception Spectroscopic Gates
+* **Kinetic Isotope Effect (KIE):** Mandatory $H/D$ $\text{KIE} = k_H / k_D \ge 5.0$ proving Proton-Coupled Electron Transfer (PCET) is rate-determining.
+* **Operando In Situ Raman/IR:** Overviews diazenido $\text{Fe-N=NH}$ formation at $\sim 1490\text{ cm}^{-1}$ under $^{15}N_2$.
+* **$^{15}N\text{-NMR}$ Forensic Validation:** Sharp peak at $-310\text{ ppm}$ with $^1J_{N-H} = 73.5 \pm 1.0\text{ Hz}$.
+
+### Part III: Performance Matrix & 3-Blank Forensic Witness
+* **Faradaic Efficiency ($FE_{NH3}$):** $\ge 15.0\%$ baseline existence threshold.
+* **3-Blank Forensic Witness:**
+  1. *Minus-Catalyst:* $0\text{ M } NH_4^+$
+  2. *Argon-Atmosphere:* $0\text{ M } NH_4^+$ (verifies ligands do not decompose into ammonia)
+  3. *Open-Circuit:* $0\text{ M } NH_4^+$
+* **Generation V+1 Mutation Feedback Loop:** Automatic algorithmic guidance (KGS-1 to KGS-4 mutations and Tolman cone angle adjustments).
 
 ---
 
-## 🚀 Kjøre Verifikasjonssweep Lokalt
+## ⚡ 3. Quickstart: Running the 10-Candidate Test Suite Locally
+
+Clone the repository and run the self-contained validation engine:
 
 ```bash
-python3 master_all_engines_sweep.py
+git clone https://github.com/sololys/femos-biomimetic-nitrogenase.git
+cd femos-biomimetic-nitrogenase
+python3 femos_engine.py
 ```
 
-*Forventet utskrift: `[TOTAL VERIFIKASJONSSTATUS]: 100% SUKSESS (ALLE 43 MOTORER PASSERTE)`.*
+### Expected Output:
+```text
+===============================================================================================
+🔬 AETHELGARD MOLECULAR: PROTOKOLL Fe-Mo-S DETERMINISTISK ADMISSIBILITETS-SUITE v3.0
+   BIO-UORGANISK ELEKTROKATALYSATOR (N2 -> NH3) MED 3-BLANK WITNESS OG MUTASJONS-LOOP
+===============================================================================================
+#   | KANDIDAT  | MÅL              | BESLUTN.  | RELÉ   | DIAGNOSE / PROTOKOLL-STATUS
+-----------------------------------------------------------------------------------------------
+1   | PROTO-01  | Fe=N (Order 2.0) | 🟢 OPEN   |  5.0V | PROTOKOLL_FE_MO_S_FULLT_VERIFISERT_SYNTH
+2   | PROTO-02  | Mo=S (Order 1.5) | 🟢 OPEN   |  5.0V | PROTOKOLL_FE_MO_S_FULLT_VERIFISERT_SYNTH
+3   | PROTO-03  | Fe=O (Order 2.0) | 🔴 KILL   |  0.0V | AEROBIC_CONTAMINATION (O2=3.5ppm > 1.0ppm)
+4   | PROTO-04  | Mo=S (Order 1.0) | 🔴 KILL   |  0.0V | SYSTEM_LATCHED_FAIL_CLOSED_EMERGENCY_SHU
+5   | PROTO-05  | Fe=N (Order 1.0) | 🟡 HOLD   |  0.0V | KIE_CAUSALITY_VIOLATION (KIE=2.10 < 5.0)
+6   | PROTO-06  | Fe=S (Order 1.0) | 🟠 REJECT |  0.0V | MOSSBAUER_OUT_OF_BOUNDS (δ=0.58 mm/s)
+    ↳ 🧬 MUTASJON: KGS-1: Asymmetrisk sigma-injeksjon (Bytt ekvatorialt fosfin med alkyl-NHC)
+7   | PROTO-07  | Fe=N (Order 1.0) | 🟡 HOLD   |  0.0V | NMR_ISOTOPIC_INTEGRITY_FAIL (δ=-240.0 ppm)
+8   | PROTO-08  | Fe=H (Order 1.0) | 🔴 KILL   |  0.0V | FE_NH3_BELOW_EXISTENCE_THRESHOLD (FE=8.5%)
+9   | PROTO-09  | Mo=S (Order 1.0) | 🟡 HOLD   |  0.0V | BLANK_CONTAMINATION_DETECTED (Ar=0.005M)
+10  | PROTO-10  | Fe=N (Order 2.0) | 🟢 OPEN   |  5.0V | PROTOKOLL_FE_MO_S_FULLT_VERIFISERT_SYNTH
+    ↳ 🧬 MUTASJON: HYSTERESE-VARSEL: Lav TOF -> Øk Tolman kjeglevinkel (θ_cone)
+-----------------------------------------------------------------------------------------------
+🔒 PROTOKOLL REVISJONSKJEDE (SHA-256): 100% INTAKT & FORSEGLET ✅
+===============================================================================================
+✅ PROTOKOLL Fe-Mo-S VALIDERINGS-SUITE: ALLE 10 TESTBANER FULLT VERIFISERT
+===============================================================================================
+```
 
 ---
 
-## 🔐 Uforanderlig WORM-Forsegling
+## 🤝 4. Dialogue with UiO, SINTEF & Industrial Partners
 
-> *Hvert eneste resultat brennes inn i det kryptografiske vitneleddet med SHA-256 forsegling. Blekket tørker for den uforanderlige tidssøylen.*
+This technical framework is open for academic collaboration and pilot benchmarking. Key questions for feasibility projects:
+1. Benchmark against existing in situ spectroelectrochemical cells (UiO/SINTEF laboratories).
+2. Establish standardized automated WORM witness logs for catalyst reproducibility and European Green Deal compliance.
+3. Transition from benchtop simulation to closed-loop experimental automation.
 
-*(C) 2026 Locus Zero Level 0 Master Suite // Admitted Reality Locked.*
+---
+
+## 📜 License & Citation
+
+Licensed under the **MIT License**.
+
+When referencing this work in academic or technical publications, please cite:
+> **Torjusen, M. E.** (2026). *Fe-Mo-S Biomimetic Nitrogenase & Deterministic Electrocatalytic Validation Architecture*. ReismannPoint Systems AS // Kreativ Systems. ORCID: [0009-0006-0431-6637](https://orcid.org/0009-0006-0431-6637).
