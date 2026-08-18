@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """
 ====================================================================================================
-AETHELGARD MOLECULAR: PROTOKOLL Fe-Mo-S DETERMINISTIC ADMISSIBILITY ENGINE v3.1 (HARDENED)
+AETHELGARD MOLECULAR: PROTOKOLL Fe-Mo-S DETERMINISTIC ADMISSIBILITY ENGINE v3.2 (HARDENED)
 ANAEROBIC BIO-INORGANIC SYNTHESIS & ELECTROCHEMICAL NITROGEN FIXATION (N2 -> NH3)
 ====================================================================================================
 Author: Marius Egerhei Torjusen (ORCID: 0009-0006-0431-6637)
 System: ReismannPoint Systems AS // Kreativ Systems (kreativ-systems.org)
 Reference: PROTOKOLL-FE-MO-S-VALIDERING-2026-v1.0
 
-Hardening Guarantees (v3.1):
-  1. ZERO DEFAULTS: Every single required telemetry field must be explicitly provided.
+Hardening Guarantees (v3.2):
+  1. ZERO DEFAULTS & TOF SANITIZATION: All 15 telemetry fields (including TOF) are mandatory.
      Missing field -> Immediate KILL (0.0V).
-  2. STRICT TYPE & NUMERICAL SANITIZATION: Rejects NaN, Inf, -Inf, strings, booleans or wrong types.
-     Any NaN/Inf -> Immediate KILL (0.0V).
-  3. FAIL-CLOSED HARDWARE LATCH: Irreversible emergency shutdown on invariant collapse.
-  4. DISK-PERSISTENT WORM LEDGER: Append-only hash-chained ledger with tamper audit.
+  2. PREDICTOR-TO-GATE COUPLING: Non-viable bond prediction (invalid atoms, negative/NaN bond order)
+     strictly forces gate state to KILL (0.0V).
+  3. FAIL-CLOSED DISK WORM PERSISTENCE: Any disk I/O write failure immediately forces the decision
+     to KILL (0.0V) and latches the hardware shutdown.
+  4. DISK WORM AUDIT & RELOAD: verify_disk_ledger() validates the raw on-disk JSONL file independently
+     across system restarts.
 ====================================================================================================
 """
 
@@ -37,6 +39,7 @@ REQUIRED_TELEMETRY_FIELDS = {
     "nmr_15n_ppm": (float, -1000.0, 1000.0),
     "nmr_1j_coupling_hz": (float, 0.0, 500.0),
     "faradaic_efficiency_pct": (float, 0.0, 100.0),
+    "turnover_frequency_h1": (float, 0.0, 10000.0),
     "blank_minus_catalyst_m": (float, 0.0, 10.0),
     "blank_ar_atmosphere_m": (float, 0.0, 10.0),
     "blank_open_circuit_m": (float, 0.0, 10.0)
@@ -62,8 +65,10 @@ class EmpiricalBondPredictor:
                      actual_dist_pm: Optional[float] = None) -> Dict[str, Any]:
         if not isinstance(atom_a, str) or not isinstance(atom_b, str):
             return {"viable": False, "reason": "INVALID_ATOM_TYPES", "bde_kj_mol": 0.0}
-        if not isinstance(bond_order, (int, float)) or math.isnan(bond_order) or math.isinf(bond_order) or bond_order <= 0:
-            return {"viable": False, "reason": "INVALID_BOND_ORDER", "bde_kj_mol": 0.0}
+        if isinstance(bond_order, bool) or not isinstance(bond_order, (int, float)):
+            return {"viable": False, "reason": "INVALID_BOND_ORDER_TYPE", "bde_kj_mol": 0.0}
+        if math.isnan(bond_order) or math.isinf(bond_order) or bond_order <= 0:
+            return {"viable": False, "reason": "INVALID_BOND_ORDER_VALUE", "bde_kj_mol": 0.0}
 
         if atom_a not in self.ELEMENT_DB or atom_b not in self.ELEMENT_DB:
             return {"viable": False, "reason": f"UNSUPPORTED_ELEMENTS ({atom_a}-{atom_b})", "bde_kj_mol": 0.0}
@@ -88,16 +93,15 @@ class EmpiricalBondPredictor:
             "actual_pm": round(dist, 2),
             "bde_kj_mol": round(bde, 2),
             "delta_g_kj_mol": round(delta_g, 2),
-            "viable": viable
+            "viable": viable,
+            "reason": "THERMODYNAMICALLY_VIABLE" if viable else "BOND_UNSTABLE_OR_ENDERGONIC"
         }
 
 
 class FeMoSProtocolAdmissibilityGate:
     """
     Layer 3: PROTOKOLL Fe-Mo-S Fail-Closed Eksekverings- og Valideringskjerne.
-    Håndhever streng input-validering (Null defaults, NaN/Inf avvisning) og 3-delte invarianter.
     """
-    # DEL I: Kjemiske & Termiske Invarianter
     MAX_O2_PPM = 1.0
     MAX_H2O_PPM = 1.0
     MAX_STOICHIOMETRY_DEV_PCT = 2.5
@@ -108,14 +112,12 @@ class FeMoSProtocolAdmissibilityGate:
     E_CAT_MAX_VOLT = -1.45      # V vs Fc/Fc+
     E_CAT_MIN_VOLT = -1.65      # V vs Fc/Fc+
 
-    # DEL II: Kausalitet & Spektroskopi Invarianter
     MIN_H_D_KIE = 5.0
     REQUIRED_15N_NMR_PPM_MIN = -315.0
     REQUIRED_15N_NMR_PPM_MAX = -305.0
     REQUIRED_J_COUPLING_HZ_MIN = 72.5
     REQUIRED_J_COUPLING_HZ_MAX = 74.5
 
-    # DEL III: Ytelse & 3-Blank Invarianter
     MIN_FARADAIC_EFFICIENCY_PCT = 15.0
 
     def __init__(self):
@@ -125,9 +127,6 @@ class FeMoSProtocolAdmissibilityGate:
         self.inert_purge_active = False
 
     def validate_and_sanitize_telemetry(self, telemetry: Any) -> Tuple[bool, str, Optional[Dict[str, float]]]:
-        """
-        Sikrer at input er et gyldig dictionary uten manglende felter eller NaN/Inf.
-        """
         if not isinstance(telemetry, dict) or not telemetry:
             return False, "INVALID_INPUT_PAYLOAD: Telemetry must be a non-empty dict.", None
 
@@ -139,7 +138,6 @@ class FeMoSProtocolAdmissibilityGate:
 
             raw_val = telemetry[field]
             
-            # Avvis boolean verdier forkledd som int/float (True == 1)
             if isinstance(raw_val, bool):
                 return False, f"TYPE_VIOLATION: Field '{field}' cannot be a boolean.", None
 
@@ -148,7 +146,6 @@ class FeMoSProtocolAdmissibilityGate:
 
             val = float(raw_val)
 
-            # Reverser og avvis NaN / Inf
             if math.isnan(val) or math.isinf(val):
                 return False, f"NUMERICAL_POISONING: Field '{field}' is NaN or Inf.", None
 
@@ -160,14 +157,10 @@ class FeMoSProtocolAdmissibilityGate:
         return True, "TELEMETRY_VALIDATED", sanitized
 
     def evaluate_protocol_candidate(self, raw_telemetry: Any) -> Tuple[str, str, float, Optional[str]]:
-        """
-        Evaluerer kandidaten mot PROTOKOLL Fe-Mo-S med streng fail-closed validering.
-        Returnerer: (Decision, Reason, Voltage, SuggestedMutation)
-        """
         if self.emergency_latched:
             return "KILL", "SYSTEM_LATCHED_FAIL_CLOSED_EMERGENCY_SHUTDOWN", 0.0, None
 
-        # 0. STRENG INPUT-VALIDERING (ZERO DEFAULTS, NO NAN/INF)
+        # 0. STRENG INPUT-VALIDERING
         valid, err_msg, sanitized = self.validate_and_sanitize_telemetry(raw_telemetry)
         if not valid or sanitized is None:
             self.state = "KILL"
@@ -196,7 +189,6 @@ class FeMoSProtocolAdmissibilityGate:
         mb_delta = t["mossbauer_delta_mm_s"]
         mb_eq = t["mossbauer_eq_mm_s"]
 
-        # Generasjon V+1 Diagnose og Mutasjons-Algoritme (DEL 3.3)
         mutation_directive = None
         if mb_delta > 0.55:
             mutation_directive = "KGS-1: Asymmetrisk sigma-injeksjon (Bytt ekvatorialt fosfin med alkyl-NHC)"
@@ -260,8 +252,7 @@ class FeMoSProtocolAdmissibilityGate:
             self.relay_voltage_v = 0.0
             return "HOLD", f"BLANK_CONTAMINATION_DETECTED (NoCat={blank_no_cat_nh4}M, Ar={blank_ar_nh4}M, OCV={blank_ocv_nh4}M)", 0.0, None
 
-        # Product Inhibition Hysteresis Check (Optional telemetry field)
-        tof = float(raw_telemetry.get("turnover_frequency_h1", 12.0))
+        tof = t["turnover_frequency_h1"]
         if tof < 2.0:
             mutation_directive = "HYSTERESE-VARSEL: Lav TOF med bekreftet NH3 -> Øk ligandens Tolman kjeglevinkel (θ_cone) for sterisk ekstrudering"
 
@@ -282,7 +273,7 @@ class FeMoSProtocolAdmissibilityGate:
 class AutonomousFeMoSMasterEngine:
     """
     Master Protocol Engine:
-    Sammenkobler Protokoll Fe-Mo-S validering og SHA-256 forseglet WORM-revisjonskjede.
+    Sammenkobler Protokoll Fe-Mo-S validering, Prediktor-kobling og SHA-256 forseglet WORM-revisjonskjede.
     """
     def __init__(self, ledger_file: Optional[str] = None):
         self.predictor = EmpiricalBondPredictor()
@@ -295,8 +286,22 @@ class AutonomousFeMoSMasterEngine:
     def evaluate_protocol_candidate(self, cid: str, atom_a: str, atom_b: str, bo: float,
                                    telemetry: Any) -> Dict[str, Any]:
         self.seq += 1
+        
+        # 1. PREDITOR EVALUERING & DIREKTE KOPLING
         bond_data = self.predictor.predict_bond(atom_a, atom_b, bo)
-        decision, reason, voltage, mutation = self.gate.evaluate_protocol_candidate(telemetry)
+        
+        if not bond_data["viable"]:
+            # Prediktor avvisning -> Tvinger porten til KILL (Fail-Closed)
+            self.gate.state = "KILL"
+            self.gate.relay_voltage_v = 0.0
+            self.gate.emergency_latched = True
+            decision = "KILL"
+            reason = f"PREDICTOR_VIABILITY_REJECTION: {bond_data.get('reason', 'UNVIABLE')}"
+            voltage = 0.0
+            mutation = None
+        else:
+            # 2. PROTOKOLL ADMISSIBILITETS-EVALUERING
+            decision, reason, voltage, mutation = self.gate.evaluate_protocol_candidate(telemetry)
 
         record = {
             "seq": self.seq,
@@ -316,20 +321,35 @@ class AutonomousFeMoSMasterEngine:
         digest = hashlib.sha256(canonical_str.encode("utf-8")).hexdigest()
         record["worm_witness_hash"] = digest
 
-        self.witness_chain.append(record)
-        self.prev_hash = digest
-
+        # 3. DISK WORM PERSISTENS (FAIL-CLOSED VED SKRIVEFEIL)
         if self.ledger_file:
             try:
-                os.makedirs(os.path.dirname(os.path.abspath(self.ledger_file)), exist_ok=True)
+                parent_dir = os.path.dirname(os.path.abspath(self.ledger_file))
+                if parent_dir:
+                    os.makedirs(parent_dir, exist_ok=True)
                 with open(self.ledger_file, "a", encoding="utf-8") as f:
                     f.write(json.dumps(record) + "\n")
-            except Exception:
-                pass
+                    f.flush()
+                    os.fsync(f.fileno())
+            except Exception as disk_err:
+                # Skrivefeil til disk -> Tvinger øyeblikkelig KILL (0.0V)
+                self.gate.state = "KILL"
+                self.gate.relay_voltage_v = 0.0
+                self.gate.emergency_latched = True
+                record["gate_decision"] = "KILL"
+                record["actuator_relay_voltage_v"] = 0.0
+                record["decision_reason"] = f"FAIL_CLOSED_DISK_WORM_PERSISTENCE_FAILURE: {disk_err}"
+                # Rekalkuler digest med feil
+                canonical_str = json.dumps(record, sort_keys=True)
+                digest = hashlib.sha256(canonical_str.encode("utf-8")).hexdigest()
+                record["worm_witness_hash"] = digest
 
+        self.witness_chain.append(record)
+        self.prev_hash = digest
         return record
 
     def verify_ledger(self) -> bool:
+        """Verifiserer den aktive minnekjeden."""
         last = "0" * 64
         for entry in self.witness_chain:
             if entry["prev_hash"] != last:
@@ -341,14 +361,42 @@ class AutonomousFeMoSMasterEngine:
             last = entry["worm_witness_hash"]
         return True
 
+    @staticmethod
+    def verify_disk_ledger(file_path: str) -> bool:
+        """Verifiserer råfilen på disk uavhengig av minnestatus."""
+        if not os.path.exists(file_path):
+            return False
+        last = "0" * 64
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    entry = json.loads(line)
+                    if entry.get("prev_hash") != last:
+                        return False
+                    payload = {k: v for k, v in entry.items() if k != "worm_witness_hash"}
+                    expected = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
+                    if expected != entry.get("worm_witness_hash"):
+                        return False
+                    last = entry["worm_witness_hash"]
+            return True
+        except Exception:
+            return False
+
 
 def run_femos_protocol_verification_suite():
     print("=" * 95)
-    print("🔬 AETHELGARD MOLECULAR: PROTOKOLL Fe-Mo-S DETERMINISTISK ADMISSIBILITETS-SUITE v3.1")
-    print("   BIO-UORGANISK ELEKTROKATALYSATOR (N2 -> NH3) MED STRENG INPUT-VALIDERING & DISK-WORM")
+    print("🔬 AETHELGARD MOLECULAR: PROTOKOLL Fe-Mo-S DETERMINISTISK ADMISSIBILITETS-SUITE v3.2")
+    print("   BIO-UORGANISK ELEKTROKATALYSATOR (N2 -> NH3) MED PREDIKTOR-KOBLING & PERSISTERT WORM")
     print("=" * 95)
 
-    engine = AutonomousFeMoSMasterEngine(ledger_file="/tmp/femos_worm_ledger.jsonl")
+    test_ledger_path = "/tmp/femos_worm_ledger_test.jsonl"
+    if os.path.exists(test_ledger_path):
+        os.remove(test_ledger_path)
+
+    engine = AutonomousFeMoSMasterEngine(ledger_file=test_ledger_path)
 
     # 10 PROTOKOLL-FE-MO-S TESTKANDIDATER
     candidates = [
@@ -378,7 +426,7 @@ def run_femos_protocol_verification_suite():
             "mossbauer_delta_mm_s": 0.45, "mossbauer_eq_mm_s": 2.10,
             "cathodic_potential_v": -1.55, "h_d_kie_ratio": 6.0,
             "diazenido_raman_cm1": 1490.0, "nmr_15n_ppm": -310.0, "nmr_1j_coupling_hz": 73.5,
-            "faradaic_efficiency_pct": 20.0,
+            "faradaic_efficiency_pct": 20.0, "turnover_frequency_h1": 5.0,
             "blank_minus_catalyst_m": 0.0, "blank_ar_atmosphere_m": 0.0, "blank_open_circuit_m": 0.0
         }, "KILL", 0.0),
 
@@ -388,7 +436,7 @@ def run_femos_protocol_verification_suite():
             "mossbauer_delta_mm_s": 0.45, "mossbauer_eq_mm_s": 2.10,
             "cathodic_potential_v": -1.55, "h_d_kie_ratio": 6.0,
             "diazenido_raman_cm1": 1490.0, "nmr_15n_ppm": -310.0, "nmr_1j_coupling_hz": 73.5,
-            "faradaic_efficiency_pct": 20.0,
+            "faradaic_efficiency_pct": 20.0, "turnover_frequency_h1": 5.0,
             "blank_minus_catalyst_m": 0.0, "blank_ar_atmosphere_m": 0.0, "blank_open_circuit_m": 0.0
         }, "KILL", 0.0),
 
@@ -400,7 +448,7 @@ def run_femos_protocol_verification_suite():
             "cathodic_potential_v": -1.55,
             "h_d_kie_ratio": 2.1, # KIE < 5.0 (Diffusjonsstøy / frakoblet PCET)
             "diazenido_raman_cm1": 1490.0, "nmr_15n_ppm": -310.0, "nmr_1j_coupling_hz": 73.5,
-            "faradaic_efficiency_pct": 20.0,
+            "faradaic_efficiency_pct": 20.0, "turnover_frequency_h1": 5.0,
             "blank_minus_catalyst_m": 0.0, "blank_ar_atmosphere_m": 0.0, "blank_open_circuit_m": 0.0
         }, "HOLD", 0.0),
 
@@ -410,7 +458,7 @@ def run_femos_protocol_verification_suite():
             "mossbauer_delta_mm_s": 0.58, "mossbauer_eq_mm_s": 2.10, # For elektronfattig!
             "cathodic_potential_v": -1.55, "h_d_kie_ratio": 5.5,
             "diazenido_raman_cm1": 1490.0, "nmr_15n_ppm": -310.0, "nmr_1j_coupling_hz": 73.5,
-            "faradaic_efficiency_pct": 22.0,
+            "faradaic_efficiency_pct": 22.0, "turnover_frequency_h1": 5.0,
             "blank_minus_catalyst_m": 0.0, "blank_ar_atmosphere_m": 0.0, "blank_open_circuit_m": 0.0
         }, "REJECT", 0.0),
 
@@ -421,7 +469,7 @@ def run_femos_protocol_verification_suite():
             "cathodic_potential_v": -1.55, "h_d_kie_ratio": 5.5,
             "diazenido_raman_cm1": 1490.0,
             "nmr_15n_ppm": -240.0, "nmr_1j_coupling_hz": 50.0, # Ugyldig NMR (Aminkontaminasjon!)
-            "faradaic_efficiency_pct": 22.0,
+            "faradaic_efficiency_pct": 22.0, "turnover_frequency_h1": 5.0,
             "blank_minus_catalyst_m": 0.0, "blank_ar_atmosphere_m": 0.0, "blank_open_circuit_m": 0.0
         }, "HOLD", 0.0),
 
@@ -432,6 +480,7 @@ def run_femos_protocol_verification_suite():
             "cathodic_potential_v": -1.55, "h_d_kie_ratio": 5.5,
             "diazenido_raman_cm1": 1490.0, "nmr_15n_ppm": -310.0, "nmr_1j_coupling_hz": 73.5,
             "faradaic_efficiency_pct": 8.5, # Under 15% eksistensrett!
+            "turnover_frequency_h1": 2.0,
             "blank_minus_catalyst_m": 0.0, "blank_ar_atmosphere_m": 0.0, "blank_open_circuit_m": 0.0
         }, "KILL", 0.0),
 
@@ -442,7 +491,7 @@ def run_femos_protocol_verification_suite():
             "mossbauer_delta_mm_s": 0.45, "mossbauer_eq_mm_s": 2.10,
             "cathodic_potential_v": -1.55, "h_d_kie_ratio": 5.5,
             "diazenido_raman_cm1": 1490.0, "nmr_15n_ppm": -310.0, "nmr_1j_coupling_hz": 73.5,
-            "faradaic_efficiency_pct": 25.0,
+            "faradaic_efficiency_pct": 25.0, "turnover_frequency_h1": 8.0,
             "blank_minus_catalyst_m": 0.0,
             "blank_ar_atmosphere_m": 0.005, # Blank feilet!
             "blank_open_circuit_m": 0.0
@@ -482,9 +531,12 @@ def run_femos_protocol_verification_suite():
         assert v == expected_v, f"Spenning mismatch i test {i}: Forventet {expected_v}, fikk {v}"
 
     print("-" * 95)
-    audit_ok = engine.verify_ledger()
-    print(f"🔒 PROTOKOLL REVISJONSKJEDE (SHA-256): {'100% INTAKT & FORSEGLET ✅' if audit_ok else 'FEILET ❌'}")
-    assert audit_ok is True
+    audit_ram_ok = engine.verify_ledger()
+    audit_disk_ok = engine.verify_disk_ledger(test_ledger_path)
+    print(f"🔒 PROTOKOLL REVISJONSKJEDE (RAM):  {'100% INTAKT & FORSEGLET ✅' if audit_ram_ok else 'FEILET ❌'}")
+    print(f"💾 DISK WORM LEDGER PERSISTENS:     {'100% VERIFISERT PÅ DISK ✅' if audit_disk_ok else 'FEILET ❌'}")
+    assert audit_ram_ok is True
+    assert audit_disk_ok is True
     print("=" * 95)
     print("✅ PROTOKOLL Fe-Mo-S VALIDERINGS-SUITE: ALLE 10 TESTBANER FULLT VERIFISERT")
     print("=" * 95)
