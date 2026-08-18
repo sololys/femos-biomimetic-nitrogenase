@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   validate-protocol:
-    name: Run Fe-Mo-S Deterministic Protocol Suite
+    name: Run Fe-Mo-S Deterministic Protocol & Hostile Test Suite
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Execute PROTOKOLL Fe-Mo-S 10-Candidate Validation Suite
+      - name: Run PROTOKOLL Fe-Mo-S 10-Candidate Golden Suite
         run: |
           python3 femos_engine.py
+
+      - name: Run Adversarial & Hostile Input Regression Suite (30 Fail-Closed Tests)
+        run: |
+          python3 test_femos_hostile_inputs.py
